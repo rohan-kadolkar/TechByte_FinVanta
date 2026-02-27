@@ -298,6 +298,7 @@ input[type="password"]:focus {
 .main-content {
     margin-left: 250px; /* Pushes content exactly past the fixed sidebar */
     padding: 40px;
+    padding-bottom: 100px;
     width: calc(100% - 250px);
     box-sizing: border-box;
 }

@@ -20,12 +20,10 @@
             <li><a href="{{ url_for('dashboard') }}"><i class="fa-solid fa-house"></i> Dashboard</a></li>
             <li><a href="{{ url_for('credit_cards') }}"><i class="fa-solid fa-credit-card"></i> Credit Cards</a></li>
             <li><a href="{{ url_for('finance') }}"><i class="fa-solid fa-chart-line"></i> Finance</a></li>
-            <li><a href="#"><i class="fa-solid fa-money-bill-transfer"></i> Payments</a></li>
             <li class="active"><a href="{{ url_for('budget') }}"><i class="fa-solid fa-bullseye"></i> Budget</a></li>
         </ul>
         <div class="logout-section" style="margin-top: auto;">
             <a href="#" class="sidebar-link" onclick="openProfile()"><i class="fa-solid fa-gear"></i> Settings</a>
-            <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
         </div>
     </div>
 
