@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceFlow - Investments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+
+    <div class="sidebar">
+        <div class="logo-section">
+            <i class="fa-solid fa-shield-halved logo-icon"></i>
+            <h2 class="logo-text">FinanceFlow</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('dashboard') }}"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li class="active"><a href="{{ url_for('credit_cards') }}"><i class="fa-solid fa-credit-card"></i> Credit Cards</a></li>
+            <li class="active"><a href="{{ url_for('finance') }}"><i class="fa-solid fa-chart-line"></i> Finance</a></li>
+            <li><a href="#"><i class="fa-solid fa-money-bill-transfer"></i> Payments</a></li>
+            <li><a href="{{ url_for('budget') }}"><i class="fa-solid fa-bullseye"></i> Budget</a></li>
+        </ul>
+        <div class="logout-section" style="margin-top: auto;">
+            <a href="#" class="sidebar-link" onclick="openProfile()"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="dashboard-header">
+            <div class="header-title">
+                <h1>Investment Portfolio</h1>
+            </div>
+            <div class="header-actions">
+                <button class="edit-btn"><i class="fa-regular fa-calendar"></i> Edit Range</button>
+                <div class="user-avatar" onclick="openProfile()" style="cursor: pointer;">{{ user[0] | upper }}</div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            
+            <div class="dash-card cash-flow-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Portfolio Growth</h3>
+                        <div class="nw-value" style="font-size: 24px;">₹{{ data.total_portfolio_value }} <span class="nw-trend">{{ data.day_change }}</span></div>
+                    </div>
+                    <select class="filter-dropdown"><option>Last Year</option></select>
+                </div>
+                <div style="position: relative; height: 250px; width: 100%;">
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+
+            <div class="dash-card net-worth-card">
+                <h3>Portfolio AI Insights</h3>
+                <ul class="insight-list">
+                    {% for insight in data.ai_insights %}
+                    <li class="insight-item" style="padding: 10px 0;">
+                        <div class="insight-icon {{ insight.color }}" style="min-width: 35px;"><i class="fa-solid {{ insight.icon }}"></i></div>
+                        <div class="insight-text" style="font-size: 13px;">{{ insight.text }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="dash-card budget-overview-card">
+                <h3>Asset Allocation</h3>
+                <div style="position: relative; height: 200px; width: 100%; display: flex; justify-content: center;">
+                    <canvas id="allocationChart"></canvas>
+                </div>
+                <div class="donut-legend" style="margin-top: 20px;">
+                    <div class="legend-item"><span class="dot" style="background: #1a2a47;"></span> Equities ({{ data.asset_allocation.data[0] }}%)</div>
+                    <div class="legend-item"><span class="dot" style="background: #3b82f6;"></span> Mutual Funds ({{ data.asset_allocation.data[1] }}%)</div>
+                    <div class="legend-item"><span class="dot" style="background: #10b981;"></span> Derivatives ({{ data.asset_allocation.data[2] }}%)</div>
+                </div>
+            </div>
+
+            <div class="dash-card cash-flow-card">
+                <div class="card-header">
+                    <h3>Summary Holdings</h3>
+                    <button class="view-all-btn">View All</button>
+                </div>
+                <table class="holdings-table">
+                    <thead>
+                        <tr>
+                            <th>Holding</th>
+                            <th>Current Value</th>
+                            <th>Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data.holdings %}
+                        <tr>
+                            <td>
+                                <strong>{{ item.name }}</strong>
+                                <span class="holding-type">{{ item.type }}</span>
+                            </td>
+                            <td>{{ item.value }}</td>
+                            <td class="{% if item.trend == 'up' %}trend-up{% else %}trend-down{% endif %}">
+                                {{ item.performance }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    {% include 'profile_drawer.html' %}
+    {% include 'chat_widget.html' %}
+    <script>
+        const invData = JSON.parse('{{ data | tojson | safe }}');
+
+        // 1. Portfolio Growth Chart (Green Filled Line Chart like the image)
+        const ctxGrowth = document.getElementById('growthChart').getContext('2d');
+        new Chart(ctxGrowth, {
+            type: 'line',
+            data: {
+                labels: invData.growth_chart.labels,
+                datasets: [{
+                    label: 'Portfolio Value',
+                    data: invData.growth_chart.data,
+                    borderColor: '#10b981', // Green line
+                    backgroundColor: 'rgba(16, 185, 129, 0.15)', // Green transparent fill
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4, 
+                    pointRadius: 0,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: false, grid: { borderDash: [5, 5] } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // 2. Asset Allocation Chart
+        const ctxAlloc = document.getElementById('allocationChart').getContext('2d');
+        new Chart(ctxAlloc, {
+            type: 'doughnut',
+            data: {
+                labels: invData.asset_allocation.labels,
+                datasets: [{
+                    data: invData.asset_allocation.data,
+                    backgroundColor: ['#1a2a47', '#3b82f6', '#10b981'],
+                    borderWidth: 0,
+                    cutout: '60%' 
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>

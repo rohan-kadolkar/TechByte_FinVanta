@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceFlow - Budget Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+
+    <div class="sidebar">
+        <div class="logo-section">
+            <i class="fa-solid fa-shield-halved logo-icon"></i>
+            <h2 class="logo-text">FinanceFlow</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('dashboard') }}"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li><a href="{{ url_for('credit_cards') }}"><i class="fa-solid fa-credit-card"></i> Credit Cards</a></li>
+            <li><a href="{{ url_for('finance') }}"><i class="fa-solid fa-chart-line"></i> Finance</a></li>
+            <li><a href="#"><i class="fa-solid fa-money-bill-transfer"></i> Payments</a></li>
+            <li class="active"><a href="{{ url_for('budget') }}"><i class="fa-solid fa-bullseye"></i> Budget</a></li>
+        </ul>
+        <div class="logout-section" style="margin-top: auto;">
+            <a href="#" class="sidebar-link" onclick="openProfile()"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="dashboard-header">
+            <div class="header-title">
+                <h1>AI Budget Planner</h1>
+            </div>
+            <div class="header-actions">
+                <button class="edit-btn" onclick="openBudgetModal()"><i class="fa-solid fa-pen"></i> Edit Budget</button>
+                <div class="user-avatar" onclick="openProfile()" style="cursor: pointer;">{{ user[0] | upper }}</div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="dash-card cash-flow-card" style="grid-column: span 3; background: linear-gradient(135deg, #1a2a47 0%, #111c30 100%); color: white;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px;">
+                    <div>
+                        <h3 style="color: #9ca3af; font-size: 14px; margin-bottom: 5px; font-weight: 500;">November Overview</h3>
+                        <div style="font-size: 42px; font-weight: 700; color: white; display: flex; align-items: baseline; gap: 8px;">
+                            ₹{{ data.total_spent }} 
+                            <span style="font-size: 16px; color: #9ca3af; font-weight: 500;">/ ₹{{ data.monthly_allowance }}</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 20px; text-align: right;">
+                        <div class="metric-box">
+                            <span style="color: #9ca3af; font-size: 12px; display: block; margin-bottom: 3px;">Safe to Spend</span>
+                            <span style="color: #10b981; font-weight: 600; font-size: 18px;">₹{{ data.safe_daily }} / day</span>
+                        </div>
+                        <div class="metric-box">
+                            <span style="color: #9ca3af; font-size: 12px; display: block; margin-bottom: 3px;">Trajectory</span>
+                            <span style="color: {{ data.trajectory_color }}; font-weight: 600; font-size: 18px;">
+                                <i class="fa-solid fa-circle-dot" style="font-size: 12px; margin-right: 4px;"></i> {{ data.trajectory_status }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="position: relative; padding-bottom: 20px;">
+                    <div style="width: 100%; height: 10px; background-color: rgba(255,255,255,0.1); border-radius: 5px;">
+                        <div style="height: 100%; width: {{ data.spent_pct }}%; background-color: {% if data.spent_pct > 90 %}#ef4444{% else %}#3b82f6{% endif %}; border-radius: 5px; transition: width 1s ease-in-out;"></div>
+                    </div>
+                    
+                    <div style="position: absolute; left: calc(({{ data.ai_forecast | replace(',', '') | float }} / {{ data.monthly_allowance | replace(',', '') | float }}) * 100%); top: -5px; display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 2px; height: 20px; background-color: #f59e0b;"></div>
+                        <span style="color: #f59e0b; font-size: 11px; margin-top: 4px; font-weight: 600; white-space: nowrap;">AI Forecast: ₹{{ data.ai_forecast }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-card cash-flow-card" style="grid-column: span 2; position: relative;">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div>
+                        <h3>Smart Categories</h3>
+                        <span style="font-size: 12px; color: #6b7280;" id="cat-subtitle">Sorted by urgency</span>
+                    </div>
+                    
+                    <div class="toggle-pill">
+                        <div class="toggle-option active" id="btn-current" onclick="switchView('current')">This Month</div>
+                        <div class="toggle-option" id="btn-past" onclick="switchView('past')">Last Month</div>
+                    </div>
+                </div>
+
+                <ul class="cc-list" id="view-current">
+                    {% for cat in data.categories %}
+                    <li class="cc-item" style="cursor: default; padding: 15px 0;">
+                        <div class="cc-icon" style="background-color: {{ cat.color }}20; color: {{ cat.color }}; border-radius: 8px;">
+                            <i class="fa-solid {{ cat.icon }}"></i>
+                        </div>
+                        <div class="cc-details" style="flex-grow: 0; width: 140px;">
+                            <span class="cc-name" style="font-size: 14px;">{{ cat.name }}</span>
+                            <span class="cc-due" style="font-size: 12px;">₹{{ "{:,.0f}".format(cat.spent) }} / ₹{{ "{:,.0f}".format(cat.budget) }}</span>
+                        </div>
+                        <div style="flex-grow: 1; margin: 0 20px;">
+                            <div style="width: 100%; height: 6px; background-color: #f3f4f6; border-radius: 3px;">
+                                <div style="height: 100%; width: {{ cat.spent_pct }}%; background-color: {{ cat.color }}; border-radius: 3px; transition: width 0.5s;"></div>
+                            </div>
+                        </div>
+                        <div class="cc-balance" style="width: 80px; text-align: right;">
+                            {% if cat.over %}
+                                <span style="color: #ef4444; font-size: 12px; font-weight: 600; background: #fee2e2; padding: 4px 8px; border-radius: 6px;">Over</span>
+                            {% else %}
+                                <span style="color: #10b981; font-size: 13px; font-weight: 600;">₹{{ "{:,.0f}".format(cat.budget - cat.spent) }} left</span>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <ul class="cc-list" id="view-past" style="display: none;">
+                    {% for cat in data.categories_past %}
+                    <li class="cc-item" style="cursor: default; padding: 15px 0;">
+                        <div class="cc-icon" style="background-color: {{ cat.color }}20; color: {{ cat.color }}; border-radius: 8px;">
+                            <i class="fa-solid {{ cat.icon }}"></i>
+                        </div>
+                        <div class="cc-details" style="flex-grow: 1;">
+                            <span class="cc-name" style="font-size: 15px;">{{ cat.name }}</span>
+                            <span class="cc-due" style="font-size: 13px; color: #6b7280;">{{ cat.pct_of_total }}% of last month's total spend</span>
+                        </div>
+                        <div class="cc-balance" style="text-align: right;">
+                            <span style="color: #1a2a47; font-size: 16px; font-weight: 700;">₹{{ "{:,.0f}".format(cat.spent) }}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    {% if not data.categories_past %}
+                        <div style="text-align: center; padding: 30px; color: #6b7280;">No data available for last month yet.</div>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div style="grid-column: span 1; display: flex; flex-direction: column; gap: 25px;">
+                
+                <div class="dash-card net-worth-card">
+                    <div class="card-header">
+                        <h3>Action Hub</h3>
+                    </div>
+                    <ul class="insight-list">
+                        {% for insight in data.ai_insights %}
+                        <li class="insight-item" style="padding: 12px 0; align-items: flex-start;">
+                            <div class="insight-icon {{ insight.color }}" style="min-width: 32px; height: 32px; font-size: 12px;"><i class="fa-solid {{ insight.icon }}"></i></div>
+                            <div class="insight-text" style="font-size: 13px; line-height: 1.5; color: #4b5563;">{{ insight.text }}</div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="dash-card net-worth-card">
+                    <h3 style="margin-bottom: 5px;">The 50/30/20 Rule</h3>
+                    <p style="font-size: 12px; color: #6b7280; margin-bottom: 20px;">AI analysis of your wealth building trajectory.</p>
+                    
+                    <div style="display: flex; height: 24px; width: 100%; border-radius: 12px; overflow: hidden; margin-bottom: 15px;">
+                        <div style="width: {{ data.golden_ratio.needs }}%; background-color: #1a2a47;" title="Needs"></div>
+                        <div style="width: {{ data.golden_ratio.wants }}%; background-color: #3b82f6;" title="Wants"></div>
+                        <div style="width: {{ data.golden_ratio.savings }}%; background-color: #10b981;" title="Savings"></div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 500;">
+                        <div style="color: #1a2a47;"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Needs ({{ data.golden_ratio.needs }}%)</div>
+                        <div style="color: #3b82f6;"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Wants ({{ data.golden_ratio.wants }}%)</div>
+                        <div style="color: #10b981;"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Savings ({{ data.golden_ratio.savings }}%)</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="budgetModal">
+        <div class="modal-content" style="width: 350px;">
+            <i class="fa-solid fa-xmark close-modal" onclick="closeBudgetModal()"></i>
+            <h2 style="color: #1a2a47; margin-bottom: 5px; font-size: 22px;">Edit Budget</h2>
+            <p style="color: #6b7280; font-size: 13px; margin-bottom: 25px;">Set a new target limit for this month. AI will automatically recalibrate your category limits.</p>
+            
+            <form action="{{ url_for('update_budget') }}" method="POST">
+                <div class="form-group" style="position: relative;">
+                    <span style="position: absolute; left: 15px; top: 12px; color: #6b7280; font-weight: 600;">₹</span>
+                    <input type="text" name="custom_budget" value="{{ data.monthly_allowance }}" style="padding-left: 30px; font-size: 16px; font-weight: 600;" required>
+                </div>
+                <button type="submit" class="login-btn" style="margin-bottom: 0;">Recalibrate Plan</button>
+            </form>
+        </div>
+    </div>
+
+    {% include 'profile_drawer.html' %}
+    {% include 'chat_widget.html' %}
+    <script>
+        // Modal Logic
+        function openBudgetModal() { document.getElementById('budgetModal').style.display = 'flex'; }
+        function closeBudgetModal() { document.getElementById('budgetModal').style.display = 'none'; }
+        
+        // Toggle Logic
+        function switchView(view) {
+            document.getElementById('view-current').style.display = view === 'current' ? 'block' : 'none';
+            document.getElementById('view-past').style.display = view === 'past' ? 'block' : 'none';
+            
+            document.getElementById('btn-current').className = view === 'current' ? 'toggle-option active' : 'toggle-option';
+            document.getElementById('btn-past').className = view === 'past' ? 'toggle-option active' : 'toggle-option';
+            
+            document.getElementById('cat-subtitle').innerText = view === 'current' ? 'Sorted by urgency' : 'Historical breakdown';
+        }
+    </script>
+</body>
+</html>
