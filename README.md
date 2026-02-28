@@ -1,7 +1,7 @@
 # TechByte_FinVanta
-Personal finance manager app
+FinVanta : AI-Powered Personal Finance Manager
 
-## 📖 Overview
+## Overview
 
 FinVanta is an AI-powered Personal Finance Manager that provides personalized, explainable financial insights using RBI-compliant Account Aggregator frameworks.
 
@@ -11,8 +11,10 @@ It helps users:
 - Improve savings discipline
 - Avoid unexpected financial shocks
 - Reduce debt dependence
+- Tracks personalized unusual behaviour 
 
 ---
+
 ## Problem 
 
 People struggle with:
@@ -22,14 +24,20 @@ People struggle with:
 - Low financial awareness
 - Generic, non-personalized financial advice
 
+---
+
 ## Solution Key Features
 
 FinVanta includes 
+- AA framework 
 - Unified financial dashboard (Banks + Cards + Investments)
 - AI-based spending intelligence
 - Personalized savings recommendations
 - Explainable anomaly detection
 - Predictive financial protection
+- Personalized multilingual AI chatbot
+
+---
 
 ## 4-Layer AI Intelligence Architecture
 
@@ -39,7 +47,7 @@ FinVanta includes
 - Account health & coverage %
 
 ### Layer 2: Expense Intelligence
-- Context-aware rules (Merchant + Time + Amount)
+- Context-aware rules 
 - Confidence scoring
 - Self-learning correction model
 
@@ -78,22 +86,22 @@ FinVanta includes
 
 ## Practical challenges and Strategy
 
-1️⃣ New Users Without History
+1. New Users Without History
 
 New users don’t have past transaction data, which limits early insights.
 Approach: Start with a basic spending baseline and gradually personalize insights as data builds over the first few weeks.
 
-2️⃣ Inconsistent Transaction Labels
+2. Inconsistent Transaction Labels
 
 UPI and card transactions often contain unclear merchant names.
 Approach: Use rule-based categorization and improve accuracy through user corrections over time.
 
-3️⃣ Dependency on Aggregator APIs
+3. Dependency on Aggregator APIs
 
 Data syncing depends on third-party Account Aggregator services.
 Approach: Cache the last synced data and display update timestamps to maintain continuity during delays.
 
-4️⃣ User Trust & Data Security
+4. User Trust & Data Security
 
 Users may hesitate to link financial accounts.
 Approach: Use read-only, consent-based access under RBI-compliant frameworks. The system cannot move funds.
@@ -103,13 +111,14 @@ Approach: Use read-only, consent-based access under RBI-compliant frameworks. Th
 ## Technology Stack
 
 - Backend: Flask
-- Frontend: HTML, CSS,javascript 
+- Frontend: HTML, CSS, javascript 
 - Database: SQLite
-- APIs: Setu Account Aggregator Sandbox, Gemini-2.5-Flash
+- AI/ML : Python, NumPy, Pandas, Scikit-learn, Sarvam AI, XGBoost 
+- APIs: Setu Account Aggregator Sandbox, Gemini-2.5-Flash, Sarvam LLM
 
 ---
 
-## 🚀 Future Scope
+## Future Scope
 
 - Credit score optimization
 - Goal-based investment advisor
@@ -118,7 +127,7 @@ Approach: Use read-only, consent-based access under RBI-compliant frameworks. Th
 
 ---
 
-## 📌 Feasibility
+## Feasibility
 
 - No direct bank partnerships required initially
 - Fully automated pipeline
