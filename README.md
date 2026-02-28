@@ -105,7 +105,6 @@ Approach: Use read-only, consent-based access under RBI-compliant frameworks. Th
 - Backend: Flask
 - Frontend: HTML, CSS,javascript 
 - Database: SQLite
-- AI/ML:
 - APIs: Setu Account Aggregator Sandbox, Gemini-2.5-Flash
 
 ---
