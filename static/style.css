@@ -1,0 +1,859 @@
+/* Base Reset and Font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Background with the dark blue corner gradient */
+body {
+    background-color: #f5f7fa;
+    /* This creates the dark blue radial blur in the top left */
+    background-image: radial-gradient(circle at top left, #1a2a47 0%, #1a2a47 15%, transparent 40%);
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The White Card */
+.login-card {
+    background: white;
+    width: 380px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Logo Styling */
+.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 28px;
+    color: #1a2a47; /* Dark blue from the image */
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a2a47;
+}
+
+/* Form Inputs */
+.form-group {
+    margin-bottom: 15px;
+}
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+}
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #1a2a47;
+}
+
+/* Options Row (Remember me & Forgot pass) */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 13px;
+    color: #555;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.forgot-pass {
+    color: #1a2a47;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-pass:hover {
+    text-decoration: underline;
+}
+
+/* Login Button */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #1a2a47;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 20px;
+}
+
+.login-btn:hover {
+    background-color: #131e33;
+}
+
+/* Sign Up Link */
+.signup-link {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+}
+
+.signup-link a {
+    color: #1a2a47;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Error message styling */
+.error-msg {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* --- WELCOME PAGE SPECIFIC STYLES --- */
+
+.welcome-card {
+    text-align: center;
+    padding: 40px 30px; /* Slightly adjust padding for this layout */
+}
+
+.illustration-container {
+    margin-bottom: 20px;
+}
+
+.welcome-img {
+    max-width: 100%;
+    height: auto;
+    max-height: 180px; /* Keeps the illustration sized appropriately */
+}
+
+.welcome-title {
+    color: #1a2a47;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.welcome-text {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+.connect-btn {
+    margin-bottom: 15px; /* Spacing between button and skip link */
+}
+
+.skip-link a {
+    color: #666;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.skip-link a:hover {
+    color: #1a2a47;
+    text-decoration: underline;
+}
+/* Success Message Styling */
+.success-msg {
+    background-color: #d1fae5; /* Light Green */
+    color: #065f46;            /* Dark Green Text */
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    text-align: center;
+    border: 1px solid #a7f3d0;
+}
+
+/* =========================================
+   DASHBOARD LAYOUT & SIDEBAR STYLES
+   ========================================= */
+
+/* Main Body Reset for Dashboard */
+.dashboard-body {
+    display: flex;
+    background-color: #f5f7fa;
+    background-image: none; /* Removes the login screen gradient */
+    min-height: 100vh;
+    margin: 0;
+
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+/* 1. The Fixed Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: white;
+    height: 100vh;
+    position: fixed; /* Locks it to the left side */
+    left: 0;
+    top: 0;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #e5e7eb;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+/* Sidebar Navigation Links */
+.nav-links {
+    list-style: none; /* Removes bullet points */
+    margin-top: 40px;
+    padding: 0;
+    flex-grow: 1;
+}
+
+.nav-links li {
+    margin-bottom: 8px;
+}
+
+.nav-links a {
+    text-decoration: none; /* Removes purple underlines */
+    color: #6b7280;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-links li.active a, .nav-links a:hover {
+    background-color: #f3f4f6;
+    color: #1a2a47;
+    font-weight: 600;
+}
+
+/* Sidebar Logout Area */
+.logout-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.logout-section a {
+    text-decoration: none;
+    color: #6b7280;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.logout-section a:hover {
+    background-color: #fee2e2;
+    color: #b91c1c; /* Turns red on hover */
+}
+
+/* =========================================
+   MAIN CONTENT & HEADER STYLES
+   ========================================= */
+
+/* 2. Main Content Wrapper */
+.main-content {
+    margin-left: 250px; /* Pushes content exactly past the fixed sidebar */
+    padding: 40px;
+    padding-bottom: 100px;
+    width: calc(100% - 250px);
+    box-sizing: border-box;
+}
+
+/* 3. Header Alignment */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between; /* Pushes title left, actions right */
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header-title h1 {
+    font-size: 28px;
+    color: #1a2a47;
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 4. Beautiful Buttons (Edit Month, Detailed Plan) */
+.edit-btn, .view-all-btn {
+    background: white;
+    border: 1px solid #d1d5db;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.edit-btn:hover, .view-all-btn:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* 5. User Avatar */
+.user-avatar {
+    width: 42px;
+    height: 42px;
+    background-color: #1a2a47;
+    color: white;
+    border-radius: 50%; /* Makes it a perfect circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase; /* Ensures the letter is capitalized */
+    box-shadow: 0 2px 5px rgba(26, 42, 71, 0.2);
+}
+
+/* =========================================
+   DASHBOARD GRID & CARDS (Restored)
+   ========================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Base Card Style */
+.dash-card {
+    background: white;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card Sizing (Matching the image) */
+.net-worth-card { grid-column: span 1; }
+.cash-flow-card { grid-column: span 2; }
+.ai-insights-card { grid-column: span 2; }
+.budget-overview-card { grid-column: span 1; }
+
+/* Header & Typography inside cards */
+.dash-card h3 {
+    font-size: 15px;
+    color: #1a2a47;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.card-header h3 { margin-bottom: 0; }
+
+/* Net Worth Specifics */
+.nw-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a2a47;
+    margin-bottom: 10px;
+}
+.nw-trend {
+    font-size: 16px;
+    color: #10b981; /* Green arrow */
+    background: #d1fae5;
+    padding: 4px 8px;
+    border-radius: 6px;
+    vertical-align: middle;
+}
+.nw-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    font-size: 13px;
+    color: #6b7280;
+    padding-top: 15px;
+    border-top: 1px solid #f3f4f6;
+}
+
+/* AI Insights List */
+.insight-list { list-style: none; padding: 0; margin: 0; }
+.insight-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+.insight-item:last-child { border-bottom: none; }
+.insight-icon {
+    width: 35px; height: 35px;
+    border-radius: 8px;
+    display: flex; justify-content: center; align-items: center;
+    margin-right: 15px; font-size: 14px;
+}
+.insight-icon.green { background: #d1fae5; color: #10b981; }
+.insight-icon.orange { background: #ffedd5; color: #f97316; }
+.insight-icon.blue { background: #dbeafe; color: #3b82f6; }
+.insight-text { font-size: 14px; color: #4b5563; }
+
+/* Budget Donut Legend */
+.donut-container { display: flex; align-items: center; gap: 20px; }
+.donut-legend { flex-grow: 1; font-size: 13px; color: #4b5563; }
+.legend-item { display: flex; align-items: center; margin-bottom: 10px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
+.income-dot { background: #1a2a47; }
+.expense-dot { background: #3b82f6; }
+.budget-dot { background: #f87171; }
+
+/* =========================================
+   INVESTMENTS TABLE STYLES
+   ========================================= */
+.holdings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.holdings-table th {
+    text-align: left;
+    padding-bottom: 12px;
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 500;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.holdings-table td {
+    padding: 16px 0;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 14px;
+    color: #374151;
+}
+
+.holdings-table tr:last-child td {
+    border-bottom: none;
+}
+
+.holding-type {
+    display: block;
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 4px;
+}
+
+.trend-up { color: #10b981; font-weight: 600; }
+.trend-down { color: #ef4444; font-weight: 600; }
+
+
+
+/* =========================================
+   CREDIT CARD AGGREGATOR STYLES
+   ========================================= */
+
+/* Credit Score Center Text */
+.score-center-text {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+.score-center-text h2 { font-size: 36px; color: #1a2a47; margin: 0; font-weight: 700;padding-bottom: 40px; }
+.score-center-text p { font-size: 14px; color: #6b7280; margin: 0; font-weight: 500; }
+
+/* Clickable Credit Card List */
+.cc-list { list-style: none; padding: 0; margin: 0; }
+.cc-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 15px; border-bottom: 1px solid #f3f4f6; cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s; border-radius: 8px;
+}
+.cc-item:hover { background-color: #f9fafb; transform: scale(1.01); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.cc-item:last-child { border-bottom: none; }
+
+.cc-icon {
+    width: 45px; height: 30px; border-radius: 4px; color: white;
+    display: flex; justify-content: center; align-items: center; font-size: 18px; margin-right: 15px;
+}
+.cc-details { flex-grow: 1; display: flex; flex-direction: column; }
+.cc-name { font-size: 15px; font-weight: 600; color: #374151; }
+.cc-due { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+.cc-balance { text-align: right; font-weight: 600; color: #111; display: flex; flex-direction: column; }
+.cc-hidden-number { font-size: 12px; color: #9ca3af; font-weight: 400; }
+
+/* =========================================
+   MODAL (POP-UP) STYLES
+   ========================================= */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); z-index: 100;
+    justify-content: center; align-items: center;
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background-color: white; padding: 30px; border-radius: 16px;
+    width: 400px; max-width: 90%; position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal {
+    position: absolute; top: 15px; right: 20px; font-size: 24px;
+    color: #9ca3af; cursor: pointer; transition: 0.2s;
+}
+.close-modal:hover { color: #111; }
+
+/* Visual Credit Card in Modal */
+.modal-card-visual {
+    width: 100%; height: 180px; border-radius: 12px; padding: 20px;
+    color: white; display: flex; flex-direction: column; justify-content: flex-end;
+    margin-bottom: 25px; position: relative; overflow: hidden;
+}
+.mc-chip {
+    position: absolute; top: 20px; left: 20px; width: 35px; height: 25px;
+    background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+    border-radius: 4px;
+}
+.modal-card-visual h3 { margin: 0 0 5px 0; font-size: 16px; font-weight: 500; }
+.mc-number { font-size: 20px; letter-spacing: 2px; font-family: monospace; }
+
+/* Modal Data Grid */
+.modal-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.m-stat label { font-size: 12px; color: #6b7280; text-transform: uppercase; font-weight: 600; }
+.m-stat h4 { margin: 5px 0 0 0; font-size: 18px; color: #111; }
+
+/* =========================================
+   EMPTY STATE (NO BANK LINKED)
+   ========================================= */
+.empty-state-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 50vh;
+    background: white;
+    border-radius: 14px;
+    padding: 50px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    margin-top: 20px;
+}
+
+.empty-icon {
+    font-size: 32px;
+    color: #1a2a47;
+    background-color: #f3f4f6;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.empty-state-container h2 {
+    color: #1a2a47;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.empty-state-container p {
+    color: #6b7280;
+    max-width: 450px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.connect-bank-btn {
+    width: auto !important; /* Overrides the 100% width from login-btn */
+    padding: 12px 30px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* =========================================
+   FLASH ALERTS
+   ========================================= */
+.flash-alert {
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    animation: slideDown 0.3s ease-out;
+}
+
+.flash-alert.warning {
+    background-color: #fffbeb;
+    color: #b45309;
+    border: 1px solid #fde68a;
+}
+.flash-alert.error {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+/* Little animation to make it pop in smoothly */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* =========================================
+   BUDGET PLANNER SPECIFIC
+   ========================================= */
+.metric-box {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+}
+
+/* =========================================
+   TOGGLE SWITCH (BUDGET PAGE)
+   ========================================= */
+.toggle-pill {
+    background-color: #f3f4f6;
+    border-radius: 20px;
+    display: flex;
+    padding: 4px;
+    gap: 4px;
+}
+
+.toggle-option {
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggle-option:hover {
+    color: #1a2a47;
+}
+
+.toggle-option.active {
+    background-color: white;
+    color: #1a2a47;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* =========================================
+   PROFILE SLIDE-OUT DRAWER (REFINED)
+   ========================================= */
+.drawer-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(3px);
+    z-index: 999; opacity: 0; visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.profile-drawer {
+    position: fixed; top: 0; right: -380px; width: 360px; height: 100vh;
+    background: #f8fafc; /* Subtle off-white to make the white cards pop */
+    box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+    z-index: 1000; display: flex; flex-direction: column;
+    transition: right 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.profile-drawer.open { right: 0; }
+.drawer-overlay.open { opacity: 1; visibility: visible; }
+
+.drawer-header {
+    padding: 20px 25px; display: flex; justify-content: space-between;
+    align-items: center; background: #fff; border-bottom: 1px solid #e2e8f0;
+}
+.drawer-header h2 { font-size: 18px; color: #0f172a; margin: 0; font-weight: 700; }
+.drawer-header .close-btn { font-size: 20px; color: #64748b; cursor: pointer; transition: 0.2s; }
+.drawer-header .close-btn:hover { color: #ef4444; }
+
+/* Hide ugly scrollbar but keep scrolling functionality */
+.drawer-body {
+    padding: 25px; flex-grow: 1; overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+.drawer-body::-webkit-scrollbar { display: none; /* Chrome, Safari, Opera */ }
+
+.profile-avatar-large {
+    width: 72px; height: 72px; background: #1a2a47; color: white;
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-size: 28px; font-weight: 700; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.profile-name { text-align: center; margin: 12px 0 4px 0; color: #0f172a; font-size: 20px; }
+.profile-email { text-align: center; color: #64748b; font-size: 13px; margin-bottom: 25px; }
+
+/* Unified Card Styling */
+.profile-section {
+    background: #ffffff; padding: 18px; border-radius: 12px;
+    border: 1px solid #e2e8f0; margin-bottom: 15px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+.profile-section h4 {
+    font-size: 11px; font-weight: 700; color: #64748b;
+    text-transform: uppercase; margin: 0 0 12px 0; letter-spacing: 0.5px;
+}
+
+/* Danger Zone Specific */
+.profile-section.danger-zone { background: #fff5f5; border-color: #fecaca; }
+.profile-section.danger-zone h4 { color: #dc2626; }
+.profile-section.danger-zone p { font-size: 12px; color: #991b1b; margin: 0 0 12px 0; line-height: 1.4; }
+
+.status-badge {
+    padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; gap: 8px; justify-content: center; width: 100%; box-sizing: border-box;
+}
+.status-badge.linked { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+.status-badge.unlinked { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+
+/* Universal Button System for the Drawer */
+.drawer-btn {
+    width: 100%; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px;
+    box-sizing: border-box; text-decoration: none; border: none; font-family: inherit;
+}
+.drawer-btn.primary-btn { background: #1a2a47; color: white; }
+.drawer-btn.primary-btn:hover { background: #0f172a; }
+
+.drawer-btn.secondary-btn { background: #fff; color: #334155; border: 1px solid #cbd5e1; }
+.drawer-btn.secondary-btn:hover { background: #f8fafc; }
+
+.drawer-btn.secondary-danger-btn { background: #fff; color: #dc2626; border: 1px solid #fca5a5; }
+.drawer-btn.secondary-danger-btn:hover { background: #fef2f2; }
+
+.drawer-btn.danger-btn { background: #ef4444; color: white; }
+.drawer-btn.danger-btn:hover { background: #dc2626; }
+
+.drawer-footer { padding: 20px 25px; background: #fff; border-top: 1px solid #e2e8f0; }
+.drawer-btn.logout-btn { background: #f1f5f9; color: #334155; }
+.drawer-btn.logout-btn:hover { background: #e2e8f0; color: #0f172a; }
+
+
+
+/* ANOMALY DETECTOR STYLES */
+.anomaly-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.anomaly-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid transparent;
+}
+
+/* Dynamic Left Borders based on severity */
+.anomaly-item:has(.severity-high) { border-left-color: #ef4444; }
+.anomaly-item:has(.severity-medium) { border-left-color: #f59e0b; }
+.anomaly-item:has(.severity-low) { border-left-color: #3b82f6; }
+
+.anomaly-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+.anomaly-icon.severity-high { background: #fee2e2; color: #ef4444; }
+.anomaly-icon.severity-medium { background: #fef3c7; color: #f59e0b; }
+.anomaly-icon.severity-low { background: #dbeafe; color: #3b82f6; }
+
+.anomaly-details {
+    flex-grow: 1;
+}
+
+.anomaly-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.anomaly-amt {
+    font-weight: 700;
+    font-family: monospace;
+}
+
+.anomaly-text {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+.anomaly-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+.anomaly-badge.high { background: #ef4444; color: white; }
+.anomaly-badge.medium { background: #f59e0b; color: white; }
+.anomaly-badge.low { background: #3b82f6; color: white; }

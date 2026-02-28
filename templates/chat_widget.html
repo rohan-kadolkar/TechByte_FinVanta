@@ -1,0 +1,491 @@
+<style>
+  /* ── Root tokens ─────────────────────────────────────── */
+  :root {
+    --fd-bg:        #0b1120;
+    --fd-surface:   #141e30;
+    --fd-surface2:  #1a2942;
+    --fd-border:    #253550;
+    --fd-accent:    #3b82f6;
+    --fd-accent2:   #1d4ed8;
+    --fd-red:       #ef4444;
+    --fd-green:     #10b981;
+    --fd-text:      #e2e8f0;
+    --fd-muted:     #8899aa;
+    --fd-radius:    14px;
+  }
+
+  /* ── FAB (floating action button) ───────────────────── */
+  #fd-fab {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    z-index: 10000;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a2a47, var(--fd-accent));
+    color: #fff; border: none; font-size: 20px; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .18s, box-shadow .18s;
+    outline: none;
+  }
+  #fd-fab:hover { transform: scale(1.09); box-shadow: 0 6px 28px rgba(59,130,246,0.55); }
+
+  /* ── Chat window ─────────────────────────────────────── */
+  #fd-window {
+    display: none;
+    position: fixed;
+    bottom: 94px; right: 28px;
+    z-index: 9999;
+    width: 360px;
+    height: 500px;
+    background: var(--fd-bg);
+    border: 1px solid var(--fd-border);
+    border-radius: var(--fd-radius);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+    flex-direction: column;
+    overflow: hidden;
+    animation: fd-rise .22s ease;
+  }
+  #fd-window.open { display: flex; }
+  @keyframes fd-rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Header ─────────────────────────────────────────── */
+  .fd-header {
+    background: linear-gradient(135deg, #111c30, var(--fd-accent2));
+    padding: 13px 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+  }
+  .fd-header-left { display: flex; align-items: center; gap: 9px; }
+  .fd-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--fd-accent), #7c3aed);
+    display: flex; align-items: center; justify-content: center; font-size: 15px;
+  }
+  .fd-title { color: #fff; font-weight: 700; font-size: 13.5px; }
+  .fd-subtitle { color: rgba(255,255,255,0.55); font-size: 11px; margin-top: 1px; }
+  .fd-header-btn {
+    background: none; border: none; color: rgba(255,255,255,0.5);
+    font-size: 16px; cursor: pointer; padding: 2px 5px; line-height: 1;
+  }
+  .fd-header-btn:hover { color: #fff; }
+
+  /* ── Messages area ──────────────────────────────────── */
+  #fd-messages {
+    flex: 1; overflow-y: auto; padding: 14px 14px 8px;
+    display: flex; flex-direction: column; gap: 10px;
+    scroll-behavior: smooth;
+  }
+  #fd-messages::-webkit-scrollbar { width: 4px; }
+  #fd-messages::-webkit-scrollbar-track { background: transparent; }
+  #fd-messages::-webkit-scrollbar-thumb { background: var(--fd-border); border-radius: 99px; }
+
+  /* ── Message bubbles ────────────────────────────────── */
+  .fd-msg-row { display: flex; gap: 8px; align-items: flex-end; }
+  .fd-msg-row.user { flex-direction: row-reverse; }
+
+  .fd-icon {
+    width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 12px;
+  }
+  .fd-icon.bot  { background: linear-gradient(135deg, var(--fd-accent), #7c3aed); color: #fff; }
+  .fd-icon.user { background: var(--fd-surface2); color: var(--fd-muted); }
+
+  .fd-bubble {
+    max-width: 80%; padding: 9px 13px;
+    border-radius: 12px; font-size: 13px; line-height: 1.55;
+  }
+  .fd-bubble.bot {
+    background: var(--fd-surface2);
+    color: var(--fd-text);
+    border-bottom-left-radius: 3px;
+  }
+  .fd-bubble.user {
+    background: linear-gradient(135deg, var(--fd-accent2), var(--fd-accent));
+    color: #fff;
+    border-bottom-right-radius: 3px;
+  }
+  .fd-bubble.error { background: rgba(239,68,68,.12); color: #fca5a5; }
+
+  /* Typing / thinking dots */
+  .fd-thinking {
+    display: inline-flex; gap: 4px; align-items: center; padding: 4px 2px;
+  }
+  .fd-thinking span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--fd-muted); display: inline-block;
+    animation: fd-dot 1.2s infinite ease-in-out;
+  }
+  .fd-thinking span:nth-child(2) { animation-delay: .2s; }
+  .fd-thinking span:nth-child(3) { animation-delay: .4s; }
+  @keyframes fd-dot {
+    0%, 80%, 100% { transform: scale(0.7); opacity: .4; }
+    40%            { transform: scale(1);   opacity: 1; }
+  }
+
+  /* Play audio chip */
+  .fd-play-btn {
+    margin-top: 6px; display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(59,130,246,.18); border: 1px solid rgba(59,130,246,.3);
+    border-radius: 20px; padding: 3px 10px; font-size: 11px; color: var(--fd-accent);
+    cursor: pointer; transition: background .15s;
+  }
+  .fd-play-btn:hover { background: rgba(59,130,246,.28); }
+
+  /* ── Input bar ──────────────────────────────────────── */
+  .fd-inputbar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 12px;
+    background: var(--fd-surface);
+    border-top: 1px solid var(--fd-border);
+    flex-shrink: 0;
+  }
+
+  #fd-text-input {
+    flex: 1; background: var(--fd-surface2); border: 1px solid var(--fd-border);
+    border-radius: 20px; padding: 8px 14px; color: var(--fd-text);
+    font-size: 13px; outline: none; resize: none; height: 36px;
+    line-height: 20px; transition: border-color .15s;
+  }
+  #fd-text-input:focus { border-color: var(--fd-accent); }
+  #fd-text-input::placeholder { color: var(--fd-muted); }
+
+  /* Send button */
+  #fd-send-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--fd-accent); color: #fff; border: none;
+    font-size: 14px; cursor: pointer; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .15s, transform .12s;
+  }
+  #fd-send-btn:hover { background: var(--fd-accent2); transform: scale(1.06); }
+
+  /* Mic button */
+  #fd-mic-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--fd-surface2); color: var(--fd-muted);
+    border: 1px solid var(--fd-border); font-size: 14px; cursor: pointer;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s, transform .12s;
+    outline: none;
+  }
+  #fd-mic-btn:hover { background: var(--fd-border); color: var(--fd-text); }
+
+  /* Mic — recording state */
+  #fd-mic-btn.recording {
+    background: var(--fd-red); color: #fff; border-color: var(--fd-red);
+    animation: fd-pulse 1.1s infinite;
+  }
+  @keyframes fd-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(239,68,68,.6); }
+    70%  { box-shadow: 0 0 0 10px rgba(239,68,68,0); }
+    100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+  }
+
+  /* ── Page badge ─────────────────────────────────────── */
+  .fd-footer {
+    padding: 5px 14px 7px;
+    background: var(--fd-surface);
+    border-top: 1px solid var(--fd-border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+  }
+  .fd-page-badge {
+    font-size: 10px; color: var(--fd-muted);
+    background: var(--fd-border); padding: 2px 8px; border-radius: 20px;
+  }
+  .fd-lang-hint { font-size: 10px; color: var(--fd-muted); }
+
+  /* ── Responsive ─────────────────────────────────────── */
+  @media (max-width: 480px) {
+    #fd-window { width: calc(100vw - 24px); right: 12px; bottom: 80px; height: 420px; }
+    #fd-fab    { right: 16px; bottom: 18px; }
+  }
+</style>
+
+<!-- ═══════════════════════ HTML ═══════════════════════ -->
+
+<!-- Floating button -->
+<button id="fd-fab" title="FinDost — Aapka Money Guide" onclick="fdToggleWindow()">
+  <i id="fd-fab-icon" class="fas fa-comments"></i>
+</button>
+
+<!-- Chat window -->
+<div id="fd-window">
+
+  <!-- Header -->
+  <div class="fd-header">
+    <div class="fd-header-left">
+      <div class="fd-avatar">🤖</div>
+      <div>
+        <div class="fd-title">FinDost</div>
+        <div class="fd-subtitle">Aapka Personal Finance Guide</div>
+      </div>
+    </div>
+    <button class="fd-header-btn" onclick="fdToggleWindow()" title="Close">✕</button>
+  </div>
+
+  <!-- Messages -->
+  <div id="fd-messages">
+    <div class="fd-msg-row">
+      <div class="fd-icon bot"><i class="fas fa-robot"></i></div>
+      <div class="fd-bubble bot">
+        Namaste! 👋 Main FinDost hoon — aapka personal finance expert.<br>
+        Type karein <b>ya</b> mic press karein — Hindi, English, Marathi, Kannada sab chalega!
+      </div>
+    </div>
+  </div>
+
+  <!-- Input bar -->
+  <div class="fd-inputbar">
+    <input
+      id="fd-text-input"
+      type="text"
+      placeholder="Type a question..."
+      autocomplete="off"
+      onkeydown="if(event.key==='Enter' && !event.shiftKey){ event.preventDefault(); fdSendText(); }"
+    />
+    <button id="fd-send-btn" onclick="fdSendText()" title="Send">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+    <button id="fd-mic-btn" title="Hold to record" onclick="fdToggleMic()">
+      <i id="fd-mic-icon" class="fas fa-microphone"></i>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <div class="fd-footer">
+    <span class="fd-page-badge" id="fd-page-badge">page: /</span>
+    <span class="fd-lang-hint">EN · हि · मराठी · ಕನ್ನಡ</span>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════ SCRIPT ═══════════════════════ -->
+<script>
+(function () {
+
+  /* ── DOM refs ────────────────────────────────────────── */
+  const fab       = document.getElementById('fd-fab');
+  const fabIcon   = document.getElementById('fd-fab-icon');
+  const win       = document.getElementById('fd-window');
+  const msgs      = document.getElementById('fd-messages');
+  const textInput = document.getElementById('fd-text-input');
+  const micBtn    = document.getElementById('fd-mic-btn');
+  const micIcon   = document.getElementById('fd-mic-icon');
+  const pageBadge = document.getElementById('fd-page-badge');
+
+  /* ── State ──────────────────────────────────────────── */
+  let isOpen      = false;
+  let isRecording = false;
+  let mediaRec    = null;
+  let audioChunks = [];
+  let stream      = null;
+  const PAGE_PATH = window.location.pathname;
+
+  pageBadge.textContent = 'page: ' + PAGE_PATH;
+
+  /* ── Window toggle ──────────────────────────────────── */
+  window.fdToggleWindow = function () {
+    isOpen = !isOpen;
+    win.classList.toggle('open', isOpen);
+    fabIcon.className = isOpen ? 'fas fa-times' : 'fas fa-comments';
+    if (isOpen) textInput.focus();
+  };
+
+  /* ── Text send ──────────────────────────────────────── */
+  window.fdSendText = function () {
+    const txt = textInput.value.trim();
+    if (!txt) return;
+    textInput.value = '';
+
+    appendMsg('user', txt);
+    const thinkId = appendThinking();
+
+    const form = new FormData();
+    form.append('user_text', txt);
+    form.append('current_path', PAGE_PATH);
+
+    fetch('/fin-dost-chat', { method: 'POST', body: form })
+      .then(r => r.json())
+      .then(data => {
+        removeThinking(thinkId);
+        if (data.error && !data.ai_response) {
+          appendMsg('bot', data.error, true);
+        } else {
+          appendMsg('bot', data.ai_response);
+        }
+      })
+      .catch(() => {
+        removeThinking(thinkId);
+        appendMsg('bot', 'Network error. Please try again.', true);
+      });
+  };
+
+  /* ── Mic toggle ─────────────────────────────────────── */
+  window.fdToggleMic = function () {
+    isRecording ? stopRecording() : startRecording();
+  };
+
+  async function startRecording() {
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioChunks = [];
+
+      const mime = ['audio/webm;codecs=opus','audio/webm','audio/ogg']
+        .find(m => MediaRecorder.isTypeSupported(m)) || '';
+
+      mediaRec = new MediaRecorder(stream, mime ? { mimeType: mime } : {});
+      mediaRec.ondataavailable = e => { if (e.data?.size > 0) audioChunks.push(e.data); };
+      mediaRec.onstop = sendVoice;
+      mediaRec.start(200);
+
+      isRecording = true;
+      micBtn.classList.add('recording');
+      micIcon.className = 'fas fa-stop';
+
+    } catch (err) {
+      appendMsg('bot', '❌ Mic access denied. Please allow microphone in browser settings.', true);
+    }
+  }
+
+  function stopRecording() {
+    if (mediaRec && isRecording) {
+      mediaRec.stop();
+      stream.getTracks().forEach(t => t.stop());
+      isRecording = false;
+      micBtn.classList.remove('recording');
+      micIcon.className = 'fas fa-circle-notch fa-spin';
+      micBtn.disabled = true;
+    }
+  }
+
+  function sendVoice() {
+    const blob = new Blob(audioChunks, { type: mediaRec.mimeType || 'audio/webm' });
+    const thinkId = appendThinking();
+
+    const form = new FormData();
+    form.append('audio_blob', blob, 'voice.webm');
+    form.append('current_path', PAGE_PATH);
+
+    fetch('/fin-dost-chat', { method: 'POST', body: form })
+      .then(r => r.json())
+      .then(data => {
+        removeThinking(thinkId);
+
+        // Show transcript
+        if (data.user_text) appendMsg('user', '🎙 ' + data.user_text);
+
+        if (data.error && !data.ai_response) {
+          appendMsg('bot', data.error, true);
+        } else {
+          // Build bot message with optional play button
+          const msgEl = appendMsg('bot', data.ai_response);
+          if (data.audio_base64) {
+            const playBtn = document.createElement('div');
+            playBtn.className = 'fd-play-btn';
+            playBtn.innerHTML = '<i class="fas fa-volume-up"></i> Play audio';
+            playBtn.onclick = () => playAudio(data.audio_base64, playBtn);
+            msgEl.appendChild(playBtn);
+            // Auto-play once
+            playAudio(data.audio_base64, null);
+          }
+        }
+      })
+      .catch(() => {
+        removeThinking(thinkId);
+        appendMsg('bot', 'Network error. Please try again.', true);
+      })
+      .finally(() => {
+        micBtn.disabled = false;
+        micIcon.className = 'fas fa-microphone';
+      });
+  }
+
+  /* ── Play base64 WAV ────────────────────────────────── */
+  function playAudio(b64, btnEl) {
+    try {
+      const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+      const url   = URL.createObjectURL(new Blob([bytes], { type: 'audio/wav' }));
+      const audio = new Audio(url);
+      if (btnEl) {
+        btnEl.innerHTML = '<i class="fas fa-volume-up"></i> Playing…';
+        audio.onended = () => {
+          btnEl.innerHTML = '<i class="fas fa-redo"></i> Play again';
+          URL.revokeObjectURL(url);
+        };
+      } else {
+        audio.onended = () => URL.revokeObjectURL(url);
+      }
+      audio.play().catch(() => {});
+    } catch (e) { console.error('[FinDost] audio decode error', e); }
+  }
+
+  /* ── Chat helpers ───────────────────────────────────── */
+  function appendMsg(side, text, isError = false) {
+    const row = document.createElement('div');
+    row.className = 'fd-msg-row' + (side === 'user' ? ' user' : '');
+
+    const icon = document.createElement('div');
+    icon.className = 'fd-icon ' + side;
+    icon.innerHTML = side === 'user'
+      ? '<i class="fas fa-user"></i>'
+      : '<i class="fas fa-robot"></i>';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'fd-bubble ' + (isError ? 'error' : side);
+    bubble.textContent = text;
+
+    row.appendChild(icon);
+    row.appendChild(bubble);
+    msgs.appendChild(row);
+    msgs.scrollTop = msgs.scrollHeight;
+    return bubble; // return bubble so caller can append children (play btn)
+  }
+
+  function appendThinking() {
+    const id  = 'think_' + Date.now();
+    const row = document.createElement('div');
+    row.className = 'fd-msg-row';
+    row.id = id;
+    row.innerHTML = `
+      <div class="fd-icon bot"><i class="fas fa-robot"></i></div>
+      <div class="fd-bubble bot">
+        <div class="fd-thinking"><span></span><span></span><span></span></div>
+      </div>`;
+    msgs.appendChild(row);
+    msgs.scrollTop = msgs.scrollHeight;
+    return id;
+  }
+
+  function removeThinking(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  }
+
+  function esc(s) {
+    return String(s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ── Spacebar push-to-talk (when not in text input) ─── */
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space' && document.activeElement !== textInput
+        && !['TEXTAREA','SELECT'].includes(document.activeElement.tagName)) {
+      e.preventDefault();
+      if (!isRecording) {
+        if (!isOpen) { isOpen = true; win.classList.add('open'); fabIcon.className = 'fas fa-times'; }
+        startRecording();
+      }
+    }
+  });
+  document.addEventListener('keyup', e => {
+    if (e.code === 'Space' && isRecording) stopRecording();
+  });
+
+})();
+</script>

@@ -1,0 +1,57 @@
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeProfile()"></div>
+
+<div class="profile-drawer" id="profileDrawer">
+    <div class="drawer-header">
+        <h2>Your Profile</h2>
+        <i class="fa-solid fa-xmark close-btn" onclick="closeProfile()"></i>
+    </div>
+    
+    <div class="drawer-body">
+        <div class="profile-avatar-large">
+            {{ user[0] | upper }}
+        </div>
+        <h3 class="profile-name">{{ user }}</h3>
+        <p class="profile-email">{{ session.get('user_email') }}</p>
+
+        <div class="profile-section">
+            <h4>Connection Status</h4>
+            {% if session.get('is_bank_linked') %}
+                <div class="status-badge linked"><i class="fa-solid fa-circle-check"></i> Bank Linked (Setu)</div>
+                <form action="{{ url_for('disconnect_bank') }}" method="POST" style="margin-top: 12px;">
+                    <button type="submit" class="drawer-btn secondary-danger-btn"><i class="fa-solid fa-link-slash"></i> Disconnect Bank</button>
+                </form>
+            {% else %}
+                <div class="status-badge unlinked"><i class="fa-solid fa-circle-xmark"></i> Not Linked</div>
+                <a href="{{ url_for('connect_bank') }}" class="drawer-btn primary-btn" style="margin-top: 12px;"><i class="fa-solid fa-link"></i> Link Account</a>
+            {% endif %}
+        </div>
+
+        <div class="profile-section">
+            <h4>Account Settings</h4>
+            <button class="drawer-btn secondary-btn" onclick="alert('Password reset link sent to your email! (Mock)')"><i class="fa-solid fa-lock"></i> Change Password</button>
+        </div>
+
+        <div class="profile-section danger-zone">
+            <h4>Danger Zone</h4>
+            <p>Permanently delete your account and wipe all financial data. This cannot be undone.</p>
+            <form action="{{ url_for('delete_account') }}" method="POST" onsubmit="return confirm('WARNING: Are you absolutely sure?');">
+                <button type="submit" class="drawer-btn danger-btn"><i class="fa-solid fa-trash-can"></i> Delete Account</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="drawer-footer">
+        <a href="{{ url_for('logout') }}" class="drawer-btn logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</a>
+    </div>
+</div>
+
+<script>
+    function openProfile() {
+        document.getElementById('profileDrawer').classList.add('open');
+        document.getElementById('drawerOverlay').classList.add('open');
+    }
+    function closeProfile() {
+        document.getElementById('profileDrawer').classList.remove('open');
+        document.getElementById('drawerOverlay').classList.remove('open');
+    }
+</script>

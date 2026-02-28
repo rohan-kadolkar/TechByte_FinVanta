@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceFlow - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+
+    <div class="sidebar">
+        <div class="logo-section">
+            <i class="fa-solid fa-shield-halved logo-icon"></i>
+            <h2 class="logo-text">FinanceFlow</h2>
+        </div>
+        <ul class="nav-links">
+            <li class="active"><a href="#"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li class="active"><a href="{{ url_for('credit_cards') }}"><i class="fa-solid fa-credit-card"></i> Credit Cards</a></li>
+            <li><a href="{{ url_for('finance') }}"><i class="fa-solid fa-chart-line"></i> Finance</a></li>
+            <li><a href="{{ url_for('budget') }}"><i class="fa-solid fa-bullseye"></i> Budget</a></li>
+            <li><a href="{{ url_for('security') }}"><i class="fa-solid fa-shield-halved"></i> Security Alerts</a></li>
+        </ul>
+        <div class="logout-section" style="margin-top: auto;">
+            <a href="#" class="sidebar-link" onclick="openProfile()"><i class="fa-solid fa-gear"></i> Settings</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        
+        <header class="dashboard-header">
+            <div class="header-title">
+                <h1>Dashboard</h1>
+            </div>
+            <div class="header-actions">
+                <!-- <button class="edit-btn"><i class="fa-regular fa-calendar"></i> Edit Month</button> -->
+                <div class="user-avatar" onclick="openProfile()" style="cursor: pointer;">{{ user[0] | upper }}</div>
+            </div>
+        </header>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-alert {{ category }}">
+                        <i class="fa-solid fa-circle-exclamation" style="margin-right: 8px;"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if not is_bank_linked %}
+            
+            <div class="empty-state-container">
+                <i class="fa-solid fa-building-columns empty-icon"></i>
+                <h2>No Data Available</h2>
+                <p>Your dashboard is empty. Connect your bank to unlock AI insights, cash flow tracking, and net worth analysis.</p>
+                <a href="{{ url_for('connect_bank') }}" class="login-btn connect-bank-btn" style="text-decoration: none; display: inline-block;">Link Bank Account</a>
+            </div>
+
+        {% else %}
+
+            <div class="dashboard-grid">
+            
+            <div class="dash-card net-worth-card">
+                <h3>Net Worth</h3>
+                <div class="nw-value">₹{{ data.net_worth }} <span class="nw-trend"><i class="fa-solid fa-arrow-up"></i></span></div>
+                <div style="position: relative; height: 80px; width: 100%;">
+                    <canvas id="netWorthChart"></canvas>
+                </div>
+                <div class="nw-footer"><span>Total Worth</span> <span>₹{{ data.net_worth }}</span></div>
+            </div>
+
+            <div class="dash-card cash-flow-card">
+                <div class="card-header">
+                    <h3>Monthly Cash Flow</h3>
+                    <!-- <select class="filter-dropdown"><option>Last 6 Months</option></select> -->
+                </div>
+                <div style="position: relative; height: 200px; width: 100%;">
+                    <canvas id="cashFlowChart"></canvas>
+                </div>
+            </div>
+
+            <div class="dash-card net-worth-card" style="grid-column: span 1;">
+                <div class="card-header">
+                    <h3>Linked Accounts</h3>
+                    <!-- <button class="view-all-btn" style="padding: 4px 8px; font-size: 12px;">Manage</button> -->
+                </div>
+                <ul class="cc-list">
+                    {% for acc in data.accounts %}
+                    <li class="cc-item" style="padding: 10px 0; cursor: pointer; border-bottom: 1px solid #f3f4f6;" onclick="openBankModal('{{ acc.id }}')">
+                        <div class="cc-icon" style="background-color: {{ acc.color }}; width: 35px; height: 35px; min-width: 35px; border-radius: 50%;">
+                            <i class="fa-solid fa-building-columns" style="font-size: 14px; color: white;"></i>
+                        </div>
+                        <div class="cc-details">
+                            <span class="cc-name" style="font-size: 14px; font-weight: 600;">{{ acc.bank_name }}</span>
+                            <span class="cc-due" style="font-size: 11px;">{{ acc.type }} {{ acc.masked_acc }}</span>
+                        </div>
+                        <div class="cc-balance" style="font-size: 14px; font-weight: 600;">
+                            <span>₹{{ acc.balance }}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="dash-card ai-insights-card" style="grid-column: span 1;">
+                <div class="card-header">
+                    <h3>AI Financial Insights</h3>
+                </div>
+                <ul class="insight-list">
+                    {% for insight in data.ai_insights %}
+                    <li class="insight-item" style="padding: 10px 0;">
+                        <div class="insight-icon {{ insight.color }}" style="min-width: 35px; width: 35px; height: 35px;"><i class="fa-solid {{ insight.icon }}"></i></div>
+                        <div class="insight-text" style="font-size: 13px;">{{ insight.text }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="dash-card budget-overview-card" style="grid-column: span 1;">
+                <h3>Budget Overview</h3>
+                <div class="donut-container" style="flex-direction: column; align-items: center; gap: 10px; margin-top: 10px;">
+                    <div style="position: relative; height: 140px; width: 140px;">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                    <div class="donut-legend" style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                        <div class="legend-item" style="margin:0;"><span class="dot income-dot"></span> Income ({{ data.budget_overview.income_pct }}%)</div>
+                        <div class="legend-item" style="margin:0;"><span class="dot expense-dot"></span> Expenses ({{ data.budget_overview.expenses_pct }}%)</div>
+                        <div class="legend-item" style="margin:0;"><span class="dot budget-dot"></span> Budget ({{ data.budget_overview.budget_pct }}%)</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            
+            {% endif %}
+
+    </div>
+
+    <div id="bankModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBankModal()">&times;</span>
+            
+            <div class="modal-card-visual" id="modalBankColor">
+                <i class="fa-solid fa-building-columns" style="font-size: 28px; margin-bottom: 15px;"></i>
+                <h3 id="modalBankName">Bank Name</h3>
+                <div class="mc-number"><span id="modalBankType" style="font-size: 14px; opacity: 0.8;">Type</span> <span id="modalBankAcc">•••• 1234</span></div>
+            </div>
+
+            <div class="modal-stats-grid">
+                <div class="m-stat"><label>Current Balance</label><h4 id="modalBankBalance" style="color: #10b981;">₹0</h4></div>
+                <div class="m-stat"><label>Branch IFSC</label><h4 id="modalBankIFSC">CODE</h4></div>
+            </div>
+
+            <div class="modal-transactions" style="margin-top: 25px; border-top: 1px solid #f3f4f6; padding-top: 15px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h4 style="margin: 0; font-size: 14px; color: #374151;">Recent Transactions</h4>
+                    <a href="#" style="font-size: 12px; color: #3b82f6; text-decoration: none; font-weight: 500;">View All</a>
+                </div>
+                <ul class="insight-list" id="modalBankTxnList" style="margin-bottom: 20px;">
+                    </ul>
+            </div>
+            
+            <!-- <button class="login-btn" style="margin-top: 10px; width: 100%;">Transfer Funds</button> -->
+        </div>
+    </div>
+
+    {% include 'profile_drawer.html' %}
+    {% include 'chat_widget.html' %}
+    <script>
+        // 1. Grab the Python data safely into JavaScript
+        const dashboardData = JSON.parse('{{ data | tojson | safe }}');
+
+        // 2. Net Worth Trend (Line Chart)
+        const ctxNetWorth = document.getElementById('netWorthChart').getContext('2d');
+        new Chart(ctxNetWorth, {
+            type: 'line',
+            data: {
+                labels: ['', '', '', '', '', ''],
+                datasets: [{
+                    data: [130000, 132000, 131000, 138000, 142000, 145000], // Mock trend
+                    borderColor: '#3b82f6',
+                    borderWidth: 2,
+                    tension: 0.4, // Makes the line curvy
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { x: { display: false }, y: { display: false } }
+            }
+        });
+
+        // 3. Monthly Cash Flow (Bar Chart)
+        const ctxCashFlow = document.getElementById('cashFlowChart').getContext('2d');
+        new Chart(ctxCashFlow, {
+            type: 'bar',
+            data: {
+                labels: dashboardData.cash_flow.labels,
+                datasets: [
+                    {
+                        label: 'Income',
+                        data: dashboardData.cash_flow.income,
+                        backgroundColor: '#1a2a47',
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Expenses',
+                        data: dashboardData.cash_flow.expenses,
+                        backgroundColor: '#f87171',
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'top', align: 'end' } },
+                scales: {
+                    y: { beginAtZero: true, grid: { borderDash: [5, 5] } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // 4. Budget Overview (Donut Chart)
+        const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+        new Chart(ctxBudget, {
+            type: 'doughnut',
+            data: {
+                labels: ['Income', 'Expenses', 'Budget'],
+                datasets: [{
+                    data: [
+                        dashboardData.budget_overview.income_pct, 
+                        dashboardData.budget_overview.expenses_pct, 
+                        dashboardData.budget_overview.budget_pct
+                    ],
+                    backgroundColor: ['#1a2a47', '#3b82f6', '#f87171'],
+                    borderWidth: 0,
+                    cutout: '70%' // Makes it a thin ring
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } } // We built our own HTML legend!
+            }
+        });
+
+        // 5. Bank Modal Control Functions
+            function openBankModal(bankId) {
+                const bank = dashboardData.accounts.find(b => b.id === bankId);
+                if (!bank) return;
+
+                document.getElementById('modalBankName').innerText = bank.bank_name;
+                document.getElementById('modalBankType').innerText = bank.type;
+                document.getElementById('modalBankAcc').innerText = bank.masked_acc;
+                document.getElementById('modalBankBalance').innerText = '₹' + bank.balance;
+                document.getElementById('modalBankIFSC').innerText = bank.ifsc;
+                document.getElementById('modalBankColor').style.backgroundColor = bank.color;
+                
+                const txnList = document.getElementById('modalBankTxnList');
+                txnList.innerHTML = ''; 
+                
+                bank.transactions.forEach(txn => {
+                    const isPayment = txn.is_payment;
+                    const iconClass = isPayment ? 'green' : 'blue';
+                    const iconName = isPayment ? 'fa-arrow-down' : 'fa-arrow-up';
+                    const amountColor = isPayment ? '#10b981' : '#111';
+                    
+                    const li = document.createElement('li');
+                    li.className = 'insight-item';
+                    li.style.justifyContent = 'space-between';
+                    li.style.padding = '8px 0';
+                    
+                    li.innerHTML = `
+                        <div style="display: flex; align-items: center;">
+                            <div class="insight-icon ${iconClass}" style="width: 30px; height: 30px; font-size: 12px; min-width: 30px;"><i class="fa-solid ${iconName}"></i></div>
+                            <div class="insight-text">
+                                <div style="font-weight: 600; color: #374151; font-size: 13px;">${txn.merchant}</div>
+                                <div style="font-size: 11px;">${txn.date}</div>
+                            </div>
+                        </div>
+                        <div style="font-weight: 600; font-size: 13px; color: ${amountColor};">${txn.amount}</div>
+                    `;
+                    txnList.appendChild(li);
+                });
+
+                document.getElementById('bankModal').style.display = 'flex';
+            }
+
+            function closeBankModal() { document.getElementById('bankModal').style.display = 'none'; }
+            
+            // Listen for clicks outside the modal to close it
+            window.addEventListener('click', function(event) {
+                if (event.target == document.getElementById('bankModal')) {
+                    closeBankModal();
+                }
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceFlow - Credit Cards</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+
+    <div class="sidebar">
+        <div class="logo-section">
+            <i class="fa-solid fa-shield-halved logo-icon"></i>
+            <h2 class="logo-text">FinanceFlow</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('dashboard') }}"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li class="active"><a href="{{ url_for('credit_cards') }}"><i class="fa-solid fa-credit-card"></i> Credit Cards</a></li>
+            <li><a href="{{ url_for('finance') }}"><i class="fa-solid fa-chart-line"></i> Finance</a></li>
+            <li><a href="{{ url_for('budget') }}"><i class="fa-solid fa-bullseye"></i> Budget</a></li>
+            <li><a href="{{ url_for('security') }}"><i class="fa-solid fa-shield-halved"></i> Security Alerts</a></li>
+        </ul>
+        <div class="logout-section" style="margin-top: auto;">
+            <a href="#" class="sidebar-link" onclick="openProfile()"><i class="fa-solid fa-gear"></i> Settings</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="dashboard-header">
+            <div class="header-title">
+                <h1>Credit Cards</h1>
+            </div>
+            <div class="header-actions">
+                <!-- <button class="edit-btn"><i class="fa-regular fa-calendar"></i> Edit Range</button> -->
+                <div class="user-avatar" onclick="openProfile()" style="cursor: pointer;">{{ user[0] | upper }}</div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            
+            <div class="dash-card net-worth-card" style="grid-column: span 1;">
+                <h3>Total Credit Card Debt</h3>
+                <div class="nw-value" style="color: #ef4444;">₹{{ data.total_debt }} <span class="nw-trend" style="background: #fee2e2; color: #ef4444;"><i class="fa-solid fa-arrow-up"></i></span></div>
+                <div style="position: relative; height: 100px; width: 100%;">
+                    <canvas id="debtChart"></canvas>
+                </div>
+            </div>
+
+            <div class="dash-card budget-overview-card" style="grid-column: span 2; display: flex; flex-direction: column; align-items: center;">
+                <div class="card-header" style="width: 100%;">
+                    <h3>Credit Score</h3>
+                </div>
+                <div style="position: relative; height: 180px; width: 300px;">
+                    <canvas id="scoreChart"></canvas>
+                    <div class="score-center-text">
+                        <h2>{{ data.credit_score }}</h2>
+                        <p>- {{ data.score_status }} -</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-card cash-flow-card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <h3>Linked Cards</h3>
+                    <button class="view-all-btn">View All</button>
+                </div>
+                <ul class="cc-list">
+                    {% for card in data.cards %}
+                    <li class="cc-item" 
+                        <li class="cc-item" onclick="openCardModal('{{ card.id }}')">
+                        <div class="cc-icon" style="background-color: {{ card.color }};"><i class="fa-brands fa-cc-{{ card.network | lower }}"></i></div>
+                        <div class="cc-details">
+                            <span class="cc-name">{{ card.name }}</span>
+                            <span class="cc-due">Due date {{ card.due_date }}</span>
+                        </div>
+                        <div class="cc-balance">
+                            <span>${{ card.balance }}</span>
+                            <span class="cc-hidden-number">•••• {{ card.last4 }}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="dash-card net-worth-card" style="grid-column: span 1;">
+                <div class="card-header">
+                    <h3>AI Card Insights</h3>
+                    <!-- <button class="view-all-btn">Detailed Plan</button> -->
+                </div>
+                <ul class="insight-list">
+                    {% for insight in data.ai_insights %}
+                    <li class="insight-item" style="padding: 12px 0;">
+                        <div class="insight-icon {{ insight.color }}" style="min-width: 35px;"><i class="fa-solid {{ insight.icon }}"></i></div>
+                        <div class="insight-text" style="font-size: 13px;">{{ insight.text }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="cardModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCardModal()">&times;</span>
+            
+            <div class="modal-card-visual" id="modalColor">
+                <div class="mc-chip"></div>
+                <h3 id="modalName">Card Name</h3>
+                <div class="mc-number">•••• •••• •••• <span id="modalLast4">1234</span></div>
+            </div>
+
+            <div class="modal-stats-grid">
+                <div class="m-stat"><label>Current Balance</label><h4 id="modalBalance" style="color: #ef4444;">$0</h4></div>
+                <div class="m-stat"><label>Credit Limit</label><h4 id="modalLimit">$0</h4></div>
+                <div class="m-stat"><label>Next Due Date</label><h4 id="modalDue">Date</h4></div>
+                <div class="m-stat"><label>Current APR</label><h4 id="modalApr">0%</h4></div>
+            </div>
+
+            <div class="modal-transactions" style="margin-top: 25px; border-top: 1px solid #f3f4f6; padding-top: 15px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h4 style="margin: 0; font-size: 14px; color: #374151;">Recent Transactions</h4>
+                    <a href="#" style="font-size: 12px; color: #3b82f6; text-decoration: none; font-weight: 500;">View All</a>
+                </div>
+                <ul class="insight-list" id="modalTxnList" style="margin-bottom: 20px;">
+                    </ul>
+            </div>
+            
+            <button class="login-btn" style="margin-top: 10px; width: 100%;">Pay Bill Now</button>
+        </div>
+    </div>
+
+    {% include 'profile_drawer.html' %}
+    {% include 'chat_widget.html' %}
+    <script>
+        const ccData = JSON.parse('{{ data | tojson | safe }}');
+
+        // 1. Debt Trend Chart (Red Line Chart)
+        const ctxDebt = document.getElementById('debtChart').getContext('2d');
+        new Chart(ctxDebt, {
+            type: 'line',
+            data: { labels: ['', '', '', '', '', ''], datasets: [{ data: ccData.debt_chart, borderColor: '#ef4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 0 }] },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { display: false } } }
+        });
+
+        // 2. Credit Score Gauge with Dynamic Needle
+        const ctxScore = document.getElementById('scoreChart').getContext('2d');
+
+        // Step A: Create a custom plugin to draw the needle
+        const gaugeNeedle = {
+            id: 'gaugeNeedle',
+            afterDatasetDraw(chart, args, options) {
+                const { ctx } = chart;
+                ctx.save();
+                
+                // Find the center of the doughnut chart
+                const xCenter = chart.getDatasetMeta(0).data[0].x;
+                const yCenter = chart.getDatasetMeta(0).data[0].y;
+                
+                // Calculate the angle based on FICO score (Range: 300 to 850)
+                const currentScore = ccData.credit_score;
+                const minScore = 300;
+                const maxScore = 850;
+                let percentage = (currentScore - minScore) / (maxScore - minScore);
+                
+                // Keep the needle within the bounds (0 to 1)
+                percentage = Math.max(0, Math.min(1, percentage)); 
+                
+                // Math.PI is 180 degrees. The chart goes from Left (Math.PI) to Right (Math.PI * 2)
+                const angle = Math.PI + (percentage * Math.PI); 
+
+                // Draw the needle
+                ctx.translate(xCenter, yCenter);
+                ctx.rotate(angle);
+                
+                ctx.beginPath();
+                ctx.moveTo(0, -6); // Top base of needle
+                ctx.lineTo(65, 0); // Tip of needle (length)
+                ctx.lineTo(0, 6);  // Bottom base of needle
+                ctx.fillStyle = '#1a2a47'; // Dark blue color to match your theme
+                ctx.fill();
+
+                // Draw the center circle pivot
+                ctx.beginPath();
+                ctx.arc(0, 0, 12, 0, Math.PI * 2);
+                ctx.fillStyle = '#1a2a47';
+                ctx.fill();
+                
+                ctx.restore();
+            }
+        };
+
+        // Step B: Initialize the chart and attach the plugin
+        new Chart(ctxScore, {
+            type: 'doughnut',
+            data: { 
+                labels: ['Poor', 'Fair', 'Good', 'Excellent'], 
+                datasets: [{ 
+                    data: [1, 1, 1, 1], 
+                    backgroundColor: ['#ef4444', '#f59e0b', '#10b981', '#059669'], 
+                    borderWidth: 0, 
+                    circumference: 180, 
+                    rotation: 270, 
+                    cutout: '75%' 
+                }] 
+            },
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false, 
+                plugins: { legend: { display: false }, tooltip: { enabled: false } },
+                layout: { padding: { bottom: 20 } } // Adds a little breathing room for the needle
+            },
+            plugins: [gaugeNeedle] // <--- We inject our custom needle here!
+        });
+
+        // 3. Modal Control Functions
+        function openCardModal(cardId) {
+            // Find the right card in our data
+            const card = ccData.cards.find(c => c.id === cardId);
+            if (!card) return;
+
+            // Fill header info
+            document.getElementById('modalName').innerText = card.name;
+            document.getElementById('modalLast4').innerText = card.last4;
+            document.getElementById('modalBalance').innerText = '$' + card.balance;
+            document.getElementById('modalLimit').innerText = (card.limit === 'No Preset Limit') ? card.limit : '$' + card.limit;
+            document.getElementById('modalApr').innerText = card.apr;
+            document.getElementById('modalDue').innerText = card.due_date;
+            document.getElementById('modalColor').style.backgroundColor = card.color;
+            
+            // Fill specific transactions
+            const txnList = document.getElementById('modalTxnList');
+            txnList.innerHTML = ''; // Clear previous data
+            
+            card.transactions.forEach(txn => {
+                const isPayment = txn.is_payment;
+                const iconClass = isPayment ? 'green' : 'blue';
+                const iconName = isPayment ? 'fa-money-bill-wave' : 'fa-store';
+                const amountColor = isPayment ? '#10b981' : '#ef4444';
+                
+                const li = document.createElement('li');
+                li.className = 'insight-item';
+                li.style.justifyContent = 'space-between';
+                li.style.padding = '8px 0';
+                
+                li.innerHTML = `
+                    <div style="display: flex; align-items: center;">
+                        <div class="insight-icon ${iconClass}" style="width: 30px; height: 30px; font-size: 12px; min-width: 30px;"><i class="fa-solid ${iconName}"></i></div>
+                        <div class="insight-text">
+                            <div style="font-weight: 600; color: #374151; font-size: 13px;">${txn.merchant}</div>
+                            <div style="font-size: 11px;">${txn.date}</div>
+                        </div>
+                    </div>
+                    <div style="font-weight: 600; font-size: 13px; color: ${amountColor};">${txn.amount}</div>
+                `;
+                txnList.appendChild(li);
+            });
+
+            document.getElementById('cardModal').style.display = 'flex';
+        }
+
+        function closeCardModal() { document.getElementById('cardModal').style.display = 'none'; }
+        window.onclick = function(event) { if (event.target == document.getElementById('cardModal')) closeCardModal(); }
+    </script>
+</body>
+</html>

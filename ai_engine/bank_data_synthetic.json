@@ -1,0 +1,2613 @@
+{
+  "fips": [
+    {
+      "fipId": "SETU-SANDBOX-FIP",
+      "fipName": "Setu Sandbox Bank",
+      "accounts": [
+        {
+          "linkRefNumber": "SETU-REF-20250101-001",
+          "accType": "SAVINGS",
+          "accRefNumber": "SETU-ACC-XXXXXXXX-001",
+          "maskedAccNumber": "XXXXXXXX1234",
+          "FIType": "DEPOSIT",
+          "data": {
+            "account": {
+              "maskedAccNumber": "XXXXXXXX1234",
+              "linkedAccRef": "SETU-ACC-XXXXXXXX-001",
+              "profile": {
+                "holders": {
+                  "type": "SINGLE",
+                  "holder": {
+                    "name": "Arjun Mehta",
+                    "dob": "1994-07-15",
+                    "mobile": "9XXXXXXXXX",
+                    "nominee": "REGISTERED",
+                    "landline": "",
+                    "address": "Koramangala, Bengaluru, Karnataka - 560034",
+                    "email": "arjun.mehta@email.com",
+                    "pan": "XXXXX1234X",
+                    "ckycCompliance": "true"
+                  }
+                }
+              },
+              "summary": {
+                "currentBalance": "586339.13",
+                "currency": "INR",
+                "exchgeRate": "",
+                "balanceDateTime": "2025-12-31T23:59:00+05:30",
+                "type": "SAVINGS",
+                "branch": "Koramangala Branch",
+                "facility": "OD",
+                "ifscCode": "SETU0001234",
+                "micrCode": "560SETU01",
+                "openingDate": "2018-03-10",
+                "currentODLimit": "0",
+                "drawingLimit": "0",
+                "status": "ACTIVE",
+                "pending": []
+              },
+              "transactions": {
+                "startDate": "2025-01-01",
+                "endDate": "2025-12-31",
+                "transaction": [
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/012025",
+                    "valueDate": "2025-01-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "250000.0"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/403832645883/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-01-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "225000.0"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2164.49",
+                    "narration": "UPI/DE/985899371430/Spencer's/XXXXXX",
+                    "valueDate": "2025-01-02T19:29:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "164225.63"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1486.94",
+                    "narration": "UPI/DE/643354278056/Flipkart/XXXXXX",
+                    "valueDate": "2025-01-03T20:03:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "153293.45"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2277.55",
+                    "narration": "UPI/DE/476415064723/LIC_Premium/XXXXXX",
+                    "valueDate": "2025-01-04T12:27:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "143523.66"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/345864938384/Netflix/XXXXXX",
+                    "valueDate": "2025-01-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "224351.0"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1106.0",
+                    "narration": "UPI/DE/388376437635/FreshMenu/XXXXXX",
+                    "valueDate": "2025-01-05T11:47:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "157705.79"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "424.25",
+                    "narration": "UPI/DE/198912225902/Zomato/XXXXXX",
+                    "valueDate": "2025-01-07T11:32:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "223298.04"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "284.23",
+                    "narration": "UPI/DE/681830843906/SonyLIV/XXXXXX",
+                    "valueDate": "2025-01-09T16:55:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "148634.26"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "783.71",
+                    "narration": "UPI/DE/984901132451/BESCOM_Electricity/XXXXXX",
+                    "valueDate": "2025-01-10T14:17:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "159143.87"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1479.7",
+                    "narration": "UPI/DE/705928833000/Zepto/XXXXXX",
+                    "valueDate": "2025-01-10T21:40:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "162745.93"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1969.38",
+                    "narration": "UPI/DE/566854953850/Blinkit/XXXXXX",
+                    "valueDate": "2025-01-11T12:09:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "167163.81"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "773.69",
+                    "narration": "UPI/DE/199223237613/DMart/XXXXXX",
+                    "valueDate": "2025-01-13T09:22:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "166390.12"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1032.07",
+                    "narration": "UPI/DE/858663022120/JioRecharge/XXXXXX",
+                    "valueDate": "2025-01-13T11:43:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "159927.58"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "53623.54",
+                    "narration": "UPI/DE/746174432554/Croma_Electronics/XXXXXX",
+                    "valueDate": "2025-01-14T20:55:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "169133.19"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "332.08",
+                    "narration": "UPI/DE/818172762479/Subway/XXXXXX",
+                    "valueDate": "2025-01-16T14:56:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "158811.79"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "628.71",
+                    "narration": "UPI/DE/914655221101/Zomato/XXXXXX",
+                    "valueDate": "2025-01-18T09:37:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "223722.29"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "416.98",
+                    "narration": "UPI/DE/287410804707/RapidoRide/XXXXXX",
+                    "valueDate": "2025-01-18T19:15:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "160959.65"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2925.4",
+                    "narration": "UPI/DE/570662212985/FirstCry/XXXXXX",
+                    "valueDate": "2025-01-19T14:23:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "154780.39"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2833.05",
+                    "narration": "UPI/DE/227649528249/GooglePay_Transfer/XXXXXX",
+                    "valueDate": "2025-01-22T22:34:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "145801.21"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "540.43",
+                    "narration": "UPI/DE/312933106111/IRCTC/XXXXXX",
+                    "valueDate": "2025-01-23T09:02:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "162205.5"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "541.31",
+                    "narration": "UPI/DE/317158893990/Zomato/XXXXXX",
+                    "valueDate": "2025-01-23T18:44:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "222756.73"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "272.49",
+                    "narration": "UPI/DE/394936156580/Ola/XXXXXX",
+                    "valueDate": "2025-01-23T22:43:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "161376.63"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "558.66",
+                    "narration": "UPI/DE/894370590668/Apollo_Pharmacy/XXXXXX",
+                    "valueDate": "2025-01-24T12:32:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "142965.0"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "4374.96",
+                    "narration": "UPI/DE/274493552068/Flipkart/XXXXXX",
+                    "valueDate": "2025-01-26T18:27:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "148918.49"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "132.52",
+                    "narration": "UPI/DE/797732084371/IRCTC/XXXXXX",
+                    "valueDate": "2025-01-27T13:10:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "161649.12"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "423.86",
+                    "narration": "UPI/DE/190130840140/IRCTC/XXXXXX",
+                    "valueDate": "2025-01-28T11:55:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "161781.64"
+                  },
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/022025",
+                    "valueDate": "2025-02-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "242965.0"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1594.28",
+                    "narration": "UPI/DE/343045499634/Blinkit/XXXXXX",
+                    "valueDate": "2025-02-01T09:45:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "166495.41"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "3810.82",
+                    "narration": "UPI/DE/446809914267/Amazon/XXXXXX",
+                    "valueDate": "2025-02-02T08:37:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "152724.86"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/296546131054/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-02-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "217965.0"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1438.67",
+                    "narration": "UPI/DE/345877882397/BigBasket/XXXXXX",
+                    "valueDate": "2025-02-03T13:01:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "168089.69"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "720.71",
+                    "narration": "UPI/DE/189966462838/Zomato/XXXXXX",
+                    "valueDate": "2025-02-03T19:31:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "215392.0"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1074.15",
+                    "narration": "UPI/DE/541800309361/AirtelBroadband/XXXXXX",
+                    "valueDate": "2025-02-05T10:24:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "158284.83"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/429103158382/Netflix/XXXXXX",
+                    "valueDate": "2025-02-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "217316.0"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "222.71",
+                    "narration": "UPI/DE/438472520493/Zomato/XXXXXX",
+                    "valueDate": "2025-02-08T08:15:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "216112.71"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "226.56",
+                    "narration": "UPI/DE/928612436713/BESCOM_Electricity/XXXXXX",
+                    "valueDate": "2025-02-08T10:26:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "159358.98"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "565.31",
+                    "narration": "UPI/DE/306823277527/FreshMenu/XXXXXX",
+                    "valueDate": "2025-02-10T11:03:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "156535.68"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "500.6",
+                    "narration": "UPI/DE/757132452561/Zomato/XXXXXX",
+                    "valueDate": "2025-02-11T15:01:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "216335.42"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "43209.79",
+                    "narration": "UPI/DE/705362105548/TataCliQ_Luxury/XXXXXX",
+                    "valueDate": "2025-02-12T12:33:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "171501.79"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "742.53",
+                    "narration": "UPI/DE/815849444665/DMart/XXXXXX",
+                    "valueDate": "2025-02-12T15:57:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "169528.36"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "479.98",
+                    "narration": "UPI/DE/268358041225/Zomato/XXXXXX",
+                    "valueDate": "2025-02-12T20:10:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "216836.02"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "129.05",
+                    "narration": "UPI/DE/565378164447/PetrolBunk/XXXXXX",
+                    "valueDate": "2025-02-14T15:55:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "162526.55"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1654.44",
+                    "narration": "UPI/DE/151960122341/WaterBoard/XXXXXX",
+                    "valueDate": "2025-02-15T16:53:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "159585.54"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2645.55",
+                    "narration": "UPI/DE/160805710565/Nykaa/XXXXXX",
+                    "valueDate": "2025-02-17T09:54:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "150079.31"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1688.43",
+                    "narration": "UPI/DE/178728590908/Blinkit/XXXXXX",
+                    "valueDate": "2025-02-17T11:17:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "164806.98"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "337.75",
+                    "narration": "UPI/DE/720982144012/GooglePay_Transfer/XXXXXX",
+                    "valueDate": "2025-02-17T13:59:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "145574.72"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "528.07",
+                    "narration": "UPI/DE/306981303296/Ola/XXXXXX",
+                    "valueDate": "2025-02-18T15:08:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "161539.36"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "680.42",
+                    "narration": "UPI/DE/937424066816/Zomato/XXXXXX",
+                    "valueDate": "2025-02-18T20:08:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "214711.58"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2830.63",
+                    "narration": "UPI/DE/736712646676/Paytm_Wallet/XXXXXX",
+                    "valueDate": "2025-02-20T08:39:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "145912.47"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "459.12",
+                    "narration": "UPI/DE/542641960943/Uber/XXXXXX",
+                    "valueDate": "2025-02-24T13:51:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "162067.43"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1771.75",
+                    "narration": "UPI/DE/244049912883/Blinkit/XXXXXX",
+                    "valueDate": "2025-02-24T22:56:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "163035.23"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1230.9",
+                    "narration": "UPI/DE/696695139934/Blinkit/XXXXXX",
+                    "valueDate": "2025-02-25T19:44:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "170270.89"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "379.63",
+                    "narration": "UPI/DE/623060957599/Ola/XXXXXX",
+                    "valueDate": "2025-02-26T14:12:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "162655.6"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1183.84",
+                    "narration": "UPI/DE/962972824015/CafeCoffe/XXXXXX",
+                    "valueDate": "2025-02-26T15:18:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "157100.99"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1336.21",
+                    "narration": "UPI/DE/839026264592/Nykaa/XXXXXX",
+                    "valueDate": "2025-02-28T11:25:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "148743.1"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "299.38",
+                    "narration": "UPI/DE/372569912085/IRCTC/XXXXXX",
+                    "valueDate": "2025-02-28T22:04:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "161239.98"
+                  },
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/032025",
+                    "valueDate": "2025-03-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "245574.72"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2763.51",
+                    "narration": "UPI/DE/345790651066/PVRCinemas/XXXXXX",
+                    "valueDate": "2025-03-01T18:12:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "196689.24"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "128.0",
+                    "narration": "UPI/DE/404209733660/PetrolBunk/XXXXXX",
+                    "valueDate": "2025-03-02T08:21:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "209440.27"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/324458279522/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-03-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "220574.72"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "447.2",
+                    "narration": "UPI/DE/928623824187/Zomato/XXXXXX",
+                    "valueDate": "2025-03-03T08:29:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "219173.37"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "322.38",
+                    "narration": "UPI/DE/486260407870/Zomato/XXXXXX",
+                    "valueDate": "2025-03-03T22:15:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "218297.24"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2349.86",
+                    "narration": "UPI/DE/388339584783/BigBasket/XXXXXX",
+                    "valueDate": "2025-03-04T22:06:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "212555.93"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/888855466331/Netflix/XXXXXX",
+                    "valueDate": "2025-03-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "219925.72"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "413.48",
+                    "narration": "UPI/DE/619083705463/Apollo_Pharmacy/XXXXXX",
+                    "valueDate": "2025-03-08T11:52:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "199452.75"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "754.87",
+                    "narration": "UPI/DE/494702875840/BESCOM_Electricity/XXXXXX",
+                    "valueDate": "2025-03-08T18:15:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "206199.75"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "4110.06",
+                    "narration": "UPI/DE/374065081450/FirstCry/XXXXXX",
+                    "valueDate": "2025-03-09T10:50:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "199866.23"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1054.34",
+                    "narration": "UPI/DE/639041627377/DMart/XXXXXX",
+                    "valueDate": "2025-03-09T22:58:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "209568.27"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1960.3",
+                    "narration": "UPI/DE/692034016653/SonyLIV/XXXXXX",
+                    "valueDate": "2025-03-11T08:07:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "193473.39"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1702.27",
+                    "narration": "UPI/DE/261286867170/WaterBoard/XXXXXX",
+                    "valueDate": "2025-03-11T10:02:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "206954.62"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "480.98",
+                    "narration": "UPI/DE/912442808255/IRCTC/XXXXXX",
+                    "valueDate": "2025-03-15T16:45:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "208959.29"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "553.75",
+                    "narration": "UPI/DE/177738827541/Zomato/XXXXXX",
+                    "valueDate": "2025-03-18T11:32:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "218619.62"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1933.32",
+                    "narration": "UPI/DE/410407371993/Blinkit/XXXXXX",
+                    "valueDate": "2025-03-20T11:45:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "210622.61"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "305.15",
+                    "narration": "UPI/DE/243433808038/Zomato/XXXXXX",
+                    "valueDate": "2025-03-22T18:19:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "219620.57"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "926.97",
+                    "narration": "UPI/DE/700581361458/Zepto/XXXXXX",
+                    "valueDate": "2025-03-23T12:39:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "217370.27"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "302.4",
+                    "narration": "UPI/DE/182084873288/Uber/XXXXXX",
+                    "valueDate": "2025-03-23T22:09:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "208656.89"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "489.05",
+                    "narration": "UPI/DE/782787430916/BiryaniBlues/XXXXXX",
+                    "valueDate": "2025-03-24T10:59:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "205710.7"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1255.55",
+                    "narration": "UPI/DE/176726811657/BookMyShow/XXXXXX",
+                    "valueDate": "2025-03-25T12:22:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "195433.69"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1122.87",
+                    "narration": "UPI/DE/980366101353/McDonald's/XXXXXX",
+                    "valueDate": "2025-03-26T10:56:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "204587.83"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "611.54",
+                    "narration": "UPI/DE/469042862849/FirstCry/XXXXXX",
+                    "valueDate": "2025-03-26T22:26:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "203976.29"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2464.48",
+                    "narration": "UPI/DE/830178040304/Spencer's/XXXXXX",
+                    "valueDate": "2025-03-27T16:19:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "214905.79"
+                  },
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/042025",
+                    "valueDate": "2025-04-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "293473.39"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/294395439052/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-04-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "268473.39"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "241.42",
+                    "narration": "UPI/DE/126402684235/Ola/XXXXXX",
+                    "valueDate": "2025-04-02T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "255916.22"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1210.8",
+                    "narration": "UPI/DE/334962281102/CultFit/XXXXXX",
+                    "valueDate": "2025-04-03T14:26:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "239608.12"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1505.33",
+                    "narration": "UPI/DE/582215724207/HealthifyMe/XXXXXX",
+                    "valueDate": "2025-04-03T19:18:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "241598.95"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "433.66",
+                    "narration": "UPI/DE/662573009263/Zomato/XXXXXX",
+                    "valueDate": "2025-04-04T14:57:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "267170.27"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "780.03",
+                    "narration": "UPI/DE/188219282055/PVRCinemas/XXXXXX",
+                    "valueDate": "2025-04-05T10:14:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "240818.92"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/391987126394/Netflix/XXXXXX",
+                    "valueDate": "2025-04-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "267824.39"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1089.88",
+                    "narration": "UPI/DE/817893352516/AirtelBroadband/XXXXXX",
+                    "valueDate": "2025-04-05T22:48:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "254428.48"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1185.28",
+                    "narration": "UPI/DE/239820136955/DMart/XXXXXX",
+                    "valueDate": "2025-04-07T14:42:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "261816.28"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1059.56",
+                    "narration": "UPI/DE/166210246191/AmazonPrime/XXXXXX",
+                    "valueDate": "2025-04-07T21:26:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "238548.56"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1748.79",
+                    "narration": "UPI/DE/567199758169/BESCOM_Electricity/XXXXXX",
+                    "valueDate": "2025-04-08T10:51:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "252679.69"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1666.36",
+                    "narration": "UPI/DE/803686852877/Flipkart/XXXXXX",
+                    "valueDate": "2025-04-09T20:49:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "243104.28"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2368.8",
+                    "narration": "UPI/DE/725413874351/Blinkit/XXXXXX",
+                    "valueDate": "2025-04-10T14:35:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "259447.48"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "326.06",
+                    "narration": "UPI/DE/193024055640/Ola/XXXXXX",
+                    "valueDate": "2025-04-10T16:42:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "256566.77"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "733.48",
+                    "narration": "UPI/DE/784317998415/Zepto/XXXXXX",
+                    "valueDate": "2025-04-11T18:54:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "263575.74"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1924.34",
+                    "narration": "UPI/DE/153534834134/WaterBoard/XXXXXX",
+                    "valueDate": "2025-04-13T11:58:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "250755.35"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2134.2",
+                    "narration": "UPI/DE/328865551724/DMart/XXXXXX",
+                    "valueDate": "2025-04-14T20:37:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "257313.28"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "602.11",
+                    "narration": "UPI/DE/682687809473/FreshMenu/XXXXXX",
+                    "valueDate": "2025-04-18T17:20:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "250153.24"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "397.86",
+                    "narration": "UPI/DE/557222530916/Uber/XXXXXX",
+                    "valueDate": "2025-04-21T17:12:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "255518.36"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "420.45",
+                    "narration": "UPI/DE/587228760932/PetrolBunk/XXXXXX",
+                    "valueDate": "2025-04-22T11:32:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "256892.83"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "574.18",
+                    "narration": "UPI/DE/441480490974/DMart/XXXXXX",
+                    "valueDate": "2025-04-22T14:20:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "263001.56"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "524.78",
+                    "narration": "UPI/DE/148338665100/Zomato/XXXXXX",
+                    "valueDate": "2025-04-23T14:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "266645.49"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2336.27",
+                    "narration": "UPI/DE/893224011429/Spencer's/XXXXXX",
+                    "valueDate": "2025-04-24T19:42:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "264309.22"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "220.46",
+                    "narration": "UPI/DE/479823559180/Zomato/XXXXXX",
+                    "valueDate": "2025-04-24T20:20:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "267603.93"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1145.04",
+                    "narration": "UPI/DE/995984519250/FreshMenu/XXXXXX",
+                    "valueDate": "2025-04-24T22:32:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "249008.2"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "409.13",
+                    "narration": "UPI/DE/998049259818/IRCTC/XXXXXX",
+                    "valueDate": "2025-04-25T11:43:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "256157.64"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "4237.56",
+                    "narration": "UPI/DE/916727364232/Nykaa/XXXXXX",
+                    "valueDate": "2025-04-28T15:28:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "244770.64"
+                  },
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/052025",
+                    "valueDate": "2025-05-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "338548.56"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/743256374783/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-05-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "313548.56"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "852.68",
+                    "narration": "UPI/DE/961424120992/Swiggy/XXXXXX",
+                    "valueDate": "2025-05-02T13:34:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "296674.95"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "733.38",
+                    "narration": "UPI/DE/317819329568/BiryaniBlues/XXXXXX",
+                    "valueDate": "2025-05-03T17:44:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "298541.26"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/868567484183/Netflix/XXXXXX",
+                    "valueDate": "2025-05-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "312899.56"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1758.6",
+                    "narration": "UPI/DE/570912023998/BigBasket/XXXXXX",
+                    "valueDate": "2025-05-05T21:29:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "304890.12"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "699.8",
+                    "narration": "UPI/DE/458110524275/DMart/XXXXXX",
+                    "valueDate": "2025-05-07T15:20:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "304190.32"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1037.06",
+                    "narration": "UPI/DE/507020728093/JioRecharge/XXXXXX",
+                    "valueDate": "2025-05-07T17:38:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "301209.36"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "486.24",
+                    "narration": "UPI/DE/133304178029/Uber/XXXXXX",
+                    "valueDate": "2025-05-08T11:53:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "302337.02"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "324.56",
+                    "narration": "UPI/DE/486340553307/RapidoRide/XXXXXX",
+                    "valueDate": "2025-05-08T18:04:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "302823.26"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2219.98",
+                    "narration": "UPI/DE/198503450940/BookMyShow/XXXXXX",
+                    "valueDate": "2025-05-09T22:28:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "284550.51"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "3476.85",
+                    "narration": "UPI/DE/810842688886/Amazon/XXXXXX",
+                    "valueDate": "2025-05-11T08:54:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "293198.1"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2390.26",
+                    "narration": "UPI/DE/572899688547/Meesho/XXXXXX",
+                    "valueDate": "2025-05-12T18:57:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "290807.84"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "706.88",
+                    "narration": "UPI/DE/734648396163/Zomato/XXXXXX",
+                    "valueDate": "2025-05-13T15:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "312192.68"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "580.78",
+                    "narration": "UPI/DE/128063847324/Spencer's/XXXXXX",
+                    "valueDate": "2025-05-13T17:36:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "306648.72"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "762.78",
+                    "narration": "UPI/DE/925916252414/Zomato/XXXXXX",
+                    "valueDate": "2025-05-13T21:57:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "311429.9"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1934.72",
+                    "narration": "UPI/DE/217300018982/BESCOM_Electricity/XXXXXX",
+                    "valueDate": "2025-05-14T08:59:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "299274.64"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2275.18",
+                    "narration": "UPI/DE/397295152191/Zepto/XXXXXX",
+                    "valueDate": "2025-05-14T15:01:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "308384.99"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1886.15",
+                    "narration": "UPI/DE/631608037091/ATM_Withdrawal/XXXXXX",
+                    "valueDate": "2025-05-15T14:52:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "286770.49"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "90.6",
+                    "narration": "UPI/DE/238463496194/Ola/XXXXXX",
+                    "valueDate": "2025-05-16T18:07:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "302246.42"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2151.2",
+                    "narration": "UPI/DE/903915386825/SonyLIV/XXXXXX",
+                    "valueDate": "2025-05-17T18:17:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "288656.64"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "769.73",
+                    "narration": "UPI/DE/690210202253/Zomato/XXXXXX",
+                    "valueDate": "2025-05-24T19:34:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "310660.17"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1013.63",
+                    "narration": "UPI/DE/864941841452/Dominos/XXXXXX",
+                    "valueDate": "2025-05-25T12:54:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "297527.63"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1042.5",
+                    "narration": "UPI/DE/925828823896/Zepto/XXXXXX",
+                    "valueDate": "2025-05-27T14:16:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "303147.82"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1155.49",
+                    "narration": "UPI/DE/283498961791/Zepto/XXXXXX",
+                    "valueDate": "2025-05-27T15:58:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "307229.5"
+                  },
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/062025",
+                    "valueDate": "2025-06-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "384550.51"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/925681106315/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-06-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "359550.51"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1894.09",
+                    "narration": "UPI/DE/411800842026/Spencer's/XXXXXX",
+                    "valueDate": "2025-06-04T21:12:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "348509.63"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/724766165589/Netflix/XXXXXX",
+                    "valueDate": "2025-06-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "358901.51"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "974.57",
+                    "narration": "UPI/DE/890792195524/Blinkit/XXXXXX",
+                    "valueDate": "2025-06-07T13:07:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "352338.06"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1449.61",
+                    "narration": "UPI/DE/272147389364/FirstCry/XXXXXX",
+                    "valueDate": "2025-06-08T10:35:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "339096.17"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1379.81",
+                    "narration": "UPI/DE/422522208302/BigBasket/XXXXXX",
+                    "valueDate": "2025-06-08T14:44:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "355384.01"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "485.81",
+                    "narration": "UPI/DE/191014894322/Zomato/XXXXXX",
+                    "valueDate": "2025-06-08T19:26:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "357231.4"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "296.5",
+                    "narration": "UPI/DE/721959119309/AirtelBroadband/XXXXXX",
+                    "valueDate": "2025-06-09T09:15:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "345271.75"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "331.78",
+                    "narration": "UPI/DE/871359612234/Zomato/XXXXXX",
+                    "valueDate": "2025-06-09T16:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "357717.21"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "309.04",
+                    "narration": "UPI/DE/159981355675/Ola/XXXXXX",
+                    "valueDate": "2025-06-09T21:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "347248.06"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "531.6",
+                    "narration": "UPI/DE/727117904706/PetrolBunk/XXXXXX",
+                    "valueDate": "2025-06-10T15:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "347557.1"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1679.81",
+                    "narration": "UPI/DE/179421446737/GasCylinder/XXXXXX",
+                    "valueDate": "2025-06-14T18:43:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "345568.25"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "584.32",
+                    "narration": "UPI/DE/131509583569/Zomato/XXXXXX",
+                    "valueDate": "2025-06-16T21:20:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "358317.19"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "835.27",
+                    "narration": "UPI/DE/621275973591/Spencer's/XXXXXX",
+                    "valueDate": "2025-06-18T16:22:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "354548.74"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "553.94",
+                    "narration": "UPI/DE/857849142762/SonyLIV/XXXXXX",
+                    "valueDate": "2025-06-20T15:18:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "338542.23"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "222.64",
+                    "narration": "UPI/DE/420204238564/Uber/XXXXXX",
+                    "valueDate": "2025-06-23T10:40:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "348088.7"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1236.11",
+                    "narration": "UPI/DE/487967794459/Spencer's/XXXXXX",
+                    "valueDate": "2025-06-23T15:17:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "353312.63"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "467.58",
+                    "narration": "UPI/DE/365249297449/Zomato/XXXXXX",
+                    "valueDate": "2025-06-23T15:41:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "356763.82"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "198.29",
+                    "narration": "UPI/DE/114183131325/Ola/XXXXXX",
+                    "valueDate": "2025-06-23T16:08:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "348311.34"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "194.66",
+                    "narration": "UPI/DE/412273997497/BookMyShow/XXXXXX",
+                    "valueDate": "2025-06-23T21:29:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "338347.57"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1934.34",
+                    "narration": "UPI/DE/337045863496/Blinkit/XXXXXX",
+                    "valueDate": "2025-06-24T15:17:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "350403.72"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "3058.83",
+                    "narration": "UPI/DE/210552841781/Amazon/XXXXXX",
+                    "valueDate": "2025-06-25T11:40:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "340545.78"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "268.2",
+                    "narration": "UPI/DE/487458104455/Zomato/XXXXXX",
+                    "valueDate": "2025-06-26T12:21:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "358048.99"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "713.88",
+                    "narration": "UPI/DE/755439143467/BiryaniBlues/XXXXXX",
+                    "valueDate": "2025-06-26T17:14:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "344557.87"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "953.26",
+                    "narration": "UPI/DE/428318986734/BiryaniBlues/XXXXXX",
+                    "valueDate": "2025-06-28T17:27:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "343604.61"
+                  },
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/072025",
+                    "valueDate": "2025-07-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "438347.57"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/851924991536/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-07-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "413347.57"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "519.98",
+                    "narration": "UPI/DE/582275910205/Zomato/XXXXXX",
+                    "valueDate": "2025-07-04T15:44:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "410885.51"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "533.36",
+                    "narration": "UPI/DE/564706095026/Zomato/XXXXXX",
+                    "valueDate": "2025-07-04T16:14:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "412165.21"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "260.94",
+                    "narration": "UPI/DE/835818342333/IRCTC/XXXXXX",
+                    "valueDate": "2025-07-04T21:10:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "406859.86"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/964424679955/Netflix/XXXXXX",
+                    "valueDate": "2025-07-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "412698.57"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1596.79",
+                    "narration": "UPI/DE/521528027521/Nykaa/XXXXXX",
+                    "valueDate": "2025-07-07T22:38:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "398031.67"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "366.05",
+                    "narration": "UPI/DE/443975597605/PetrolBunk/XXXXXX",
+                    "valueDate": "2025-07-09T13:07:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "406242.31"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2787.08",
+                    "narration": "UPI/DE/176725411465/Flipkart/XXXXXX",
+                    "valueDate": "2025-07-09T20:50:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "395244.59"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1325.74",
+                    "narration": "UPI/DE/392932052116/BESCOM_Electricity/XXXXXX",
+                    "valueDate": "2025-07-13T10:59:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "403388.22"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "251.5",
+                    "narration": "UPI/DE/827087359039/PetrolBunk/XXXXXX",
+                    "valueDate": "2025-07-13T21:48:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "406608.36"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "943.85",
+                    "narration": "UPI/DE/497363671483/AirtelBroadband/XXXXXX",
+                    "valueDate": "2025-07-14T20:31:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "404713.96"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "718.45",
+                    "narration": "UPI/DE/130586292150/GasCylinder/XXXXXX",
+                    "valueDate": "2025-07-15T17:51:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "402669.77"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "880.76",
+                    "narration": "UPI/DE/115250737438/CafeCoffe/XXXXXX",
+                    "valueDate": "2025-07-18T14:05:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "401789.01"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "347.66",
+                    "narration": "UPI/DE/650925102373/Zomato/XXXXXX",
+                    "valueDate": "2025-07-18T15:28:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "410537.85"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1615.68",
+                    "narration": "UPI/DE/455342117469/Zepto/XXXXXX",
+                    "valueDate": "2025-07-20T12:01:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "408922.17"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "188.76",
+                    "narration": "UPI/DE/438411762855/Zomato/XXXXXX",
+                    "valueDate": "2025-07-20T19:52:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "411405.49"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "388.51",
+                    "narration": "UPI/DE/668956468715/Blinkit/XXXXXX",
+                    "valueDate": "2025-07-21T15:58:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "408032.74"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1661.88",
+                    "narration": "UPI/DE/707018207466/PVRCinemas/XXXXXX",
+                    "valueDate": "2025-07-25T16:24:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "390291.52"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1085.64",
+                    "narration": "UPI/DE/394238492851/LIC_Premium/XXXXXX",
+                    "valueDate": "2025-07-27T08:18:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "394158.95"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "584.5",
+                    "narration": "UPI/DE/666355478456/PetrolBunk/XXXXXX",
+                    "valueDate": "2025-07-27T08:42:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "405657.81"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "570.96",
+                    "narration": "UPI/DE/395959373593/Zomato/XXXXXX",
+                    "valueDate": "2025-07-27T10:04:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "411594.25"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "347.17",
+                    "narration": "UPI/DE/809174117091/Swiggy/XXXXXX",
+                    "valueDate": "2025-07-27T10:31:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "401441.84"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "500.92",
+                    "narration": "UPI/DE/842018995729/Spencer's/XXXXXX",
+                    "valueDate": "2025-07-27T12:36:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "408421.25"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "911.94",
+                    "narration": "UPI/DE/797656813698/Spencer's/XXXXXX",
+                    "valueDate": "2025-07-27T15:05:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "407120.8"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1813.38",
+                    "narration": "UPI/DE/556440884355/FirstCry/XXXXXX",
+                    "valueDate": "2025-07-27T15:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "399628.46"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2205.55",
+                    "narration": "UPI/DE/639705335953/Paytm_Wallet/XXXXXX",
+                    "valueDate": "2025-07-28T10:28:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "391953.4"
+                  },
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/082025",
+                    "valueDate": "2025-08-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "490291.52"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1828.54",
+                    "narration": "UPI/DE/402347683453/FirstCry/XXXXXX",
+                    "valueDate": "2025-08-01T17:55:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "445619.14"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/364988738014/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-08-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "465291.52"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1373.48",
+                    "narration": "UPI/DE/778759018230/Spencer's/XXXXXX",
+                    "valueDate": "2025-08-03T11:40:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "453132.31"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2190.69",
+                    "narration": "UPI/DE/787782229702/GooglePay_Transfer/XXXXXX",
+                    "valueDate": "2025-08-04T22:40:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "437227.57"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/523362647197/Netflix/XXXXXX",
+                    "valueDate": "2025-08-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "464642.52"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "519.37",
+                    "narration": "UPI/DE/890339899896/Zepto/XXXXXX",
+                    "valueDate": "2025-08-05T14:55:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "459701.07"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "859.34",
+                    "narration": "UPI/DE/434343034522/FreshMenu/XXXXXX",
+                    "valueDate": "2025-08-07T14:54:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "448427.62"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2722.05",
+                    "narration": "UPI/DE/979505110502/BookMyShow/XXXXXX",
+                    "valueDate": "2025-08-08T17:51:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "440539.99"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1121.73",
+                    "narration": "UPI/DE/779421443451/GooglePay_Transfer/XXXXXX",
+                    "valueDate": "2025-08-09T18:48:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "439418.26"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "95.05",
+                    "narration": "UPI/DE/163548952306/IRCTC/XXXXXX",
+                    "valueDate": "2025-08-10T13:23:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "452068.83"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "181.25",
+                    "narration": "UPI/DE/748487026122/Subway/XXXXXX",
+                    "valueDate": "2025-08-10T18:27:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "449286.96"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "706.41",
+                    "narration": "UPI/DE/149008905874/Zomato/XXXXXX",
+                    "valueDate": "2025-08-11T19:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "463936.11"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1095.8",
+                    "narration": "UPI/DE/354017756402/WaterBoard/XXXXXX",
+                    "valueDate": "2025-08-12T18:16:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "450495.44"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1027.23",
+                    "narration": "UPI/DE/984329078416/BESCOM_Electricity/XXXXXX",
+                    "valueDate": "2025-08-12T22:18:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "449468.21"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "608.4",
+                    "narration": "UPI/DE/520096802415/Zomato/XXXXXX",
+                    "valueDate": "2025-08-13T18:50:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "463327.71"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "558.88",
+                    "narration": "UPI/DE/201991584928/Ola/XXXXXX",
+                    "valueDate": "2025-08-14T09:48:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "452573.43"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "683.49",
+                    "narration": "UPI/DE/267421339099/Zomato/XXXXXX",
+                    "valueDate": "2025-08-16T08:08:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "462644.22"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "979.94",
+                    "narration": "UPI/DE/493298413208/Meesho/XXXXXX",
+                    "valueDate": "2025-08-19T12:44:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "447447.68"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "303.96",
+                    "narration": "UPI/DE/553252908058/Ola/XXXXXX",
+                    "valueDate": "2025-08-19T18:50:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "451764.87"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "409.55",
+                    "narration": "UPI/DE/282294211298/Uber/XXXXXX",
+                    "valueDate": "2025-08-23T12:57:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "452163.88"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1783.59",
+                    "narration": "UPI/DE/788554816658/Spencer's/XXXXXX",
+                    "valueDate": "2025-08-23T22:48:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "454505.79"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2357.1",
+                    "narration": "UPI/DE/769631000910/Apollo_Pharmacy/XXXXXX",
+                    "valueDate": "2025-08-24T15:53:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "443262.04"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1740.52",
+                    "narration": "UPI/DE/615717460412/Blinkit/XXXXXX",
+                    "valueDate": "2025-08-26T12:21:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "457960.55"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1671.17",
+                    "narration": "UPI/DE/188690373106/Zepto/XXXXXX",
+                    "valueDate": "2025-08-28T13:54:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "456289.38"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "173.63",
+                    "narration": "UPI/DE/770354064649/Ola/XXXXXX",
+                    "valueDate": "2025-08-28T14:39:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "451591.24"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2423.78",
+                    "narration": "UPI/DE/211109516823/DMart/XXXXXX",
+                    "valueDate": "2025-08-28T21:28:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "460220.44"
+                  },
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/092025",
+                    "valueDate": "2025-09-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "537227.57"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/145725684753/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-09-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "512227.57"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "152.68",
+                    "narration": "UPI/DE/226669858209/Uber/XXXXXX",
+                    "valueDate": "2025-09-04T11:56:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "502393.68"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "589.17",
+                    "narration": "UPI/DE/498811121833/Dominos/XXXXXX",
+                    "valueDate": "2025-09-04T18:23:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "498591.65"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "171.69",
+                    "narration": "UPI/DE/904725951409/Zomato/XXXXXX",
+                    "valueDate": "2025-09-05T09:58:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "511406.88"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/964615283104/Netflix/XXXXXX",
+                    "valueDate": "2025-09-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "511578.57"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "341.82",
+                    "narration": "UPI/DE/558476939238/Zomato/XXXXXX",
+                    "valueDate": "2025-09-06T11:08:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "511065.06"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2506.47",
+                    "narration": "UPI/DE/745134828528/ATM_Withdrawal/XXXXXX",
+                    "valueDate": "2025-09-07T21:55:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "490433.16"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1330.33",
+                    "narration": "UPI/DE/929533234908/BigBasket/XXXXXX",
+                    "valueDate": "2025-09-08T21:43:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "508383.69"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "698.91",
+                    "narration": "UPI/DE/534051757557/Subway/XXXXXX",
+                    "valueDate": "2025-09-09T11:07:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "497892.74"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1893.28",
+                    "narration": "UPI/DE/713341033639/Zepto/XXXXXX",
+                    "valueDate": "2025-09-12T09:50:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "506490.41"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "777.22",
+                    "narration": "UPI/DE/856054759475/CafeCoffe/XXXXXX",
+                    "valueDate": "2025-09-12T11:28:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "499180.82"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "899.56",
+                    "narration": "UPI/DE/867695941207/JioRecharge/XXXXXX",
+                    "valueDate": "2025-09-13T14:37:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "501494.12"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1536.08",
+                    "narration": "UPI/DE/559069356637/AirtelBroadband/XXXXXX",
+                    "valueDate": "2025-09-15T09:53:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "499958.04"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1168.06",
+                    "narration": "UPI/DE/235448546713/DMart/XXXXXX",
+                    "valueDate": "2025-09-15T13:43:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "505322.35"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "661.23",
+                    "narration": "UPI/DE/681391931090/Zomato/XXXXXX",
+                    "valueDate": "2025-09-17T22:17:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "510403.83"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "430.92",
+                    "narration": "UPI/DE/778712312814/PetrolBunk/XXXXXX",
+                    "valueDate": "2025-09-18T13:58:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "502943.6"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "912.53",
+                    "narration": "UPI/DE/802835768946/Flipkart/XXXXXX",
+                    "valueDate": "2025-09-20T08:03:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "496980.21"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "775.7",
+                    "narration": "UPI/DE/963922166853/LIC_Premium/XXXXXX",
+                    "valueDate": "2025-09-20T08:17:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "489657.46"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "397.24",
+                    "narration": "UPI/DE/433723585310/Uber/XXXXXX",
+                    "valueDate": "2025-09-21T14:07:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "502546.36"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "689.81",
+                    "narration": "UPI/DE/425586388909/Zomato/XXXXXX",
+                    "valueDate": "2025-09-24T21:21:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "509714.02"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "4040.58",
+                    "narration": "UPI/DE/241685906927/Flipkart/XXXXXX",
+                    "valueDate": "2025-09-26T17:13:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "492939.63"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1947.83",
+                    "narration": "UPI/DE/519122494202/DMart/XXXXXX",
+                    "valueDate": "2025-09-27T18:23:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "503374.52"
+                  },
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/102025",
+                    "valueDate": "2025-10-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "589657.46"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1963.83",
+                    "narration": "UPI/DE/395036212198/Apollo_Pharmacy/XXXXXX",
+                    "valueDate": "2025-10-01T10:17:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "537425.04"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/693263798805/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-10-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "564657.46"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1294.41",
+                    "narration": "UPI/DE/778370394729/Blinkit/XXXXXX",
+                    "valueDate": "2025-10-02T19:50:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "561066.79"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2622.6",
+                    "narration": "UPI/DE/540909937895/Paytm_Wallet/XXXXXX",
+                    "valueDate": "2025-10-03T10:47:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "532664.61"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "510.26",
+                    "narration": "UPI/DE/900650578998/PetrolBunk/XXXXXX",
+                    "valueDate": "2025-10-04T13:27:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "552066.09"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2496.89",
+                    "narration": "UPI/DE/853450108054/Zepto/XXXXXX",
+                    "valueDate": "2025-10-04T15:45:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "556270.65"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "221.45",
+                    "narration": "UPI/DE/129491169126/Zomato/XXXXXX",
+                    "valueDate": "2025-10-05T08:22:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "563787.01"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/977249879964/Netflix/XXXXXX",
+                    "valueDate": "2025-10-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "564008.46"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "320.84",
+                    "narration": "UPI/DE/572846822785/BESCOM_Electricity/XXXXXX",
+                    "valueDate": "2025-10-06T19:47:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "550348.06"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "366.69",
+                    "narration": "UPI/DE/595768375362/Ola/XXXXXX",
+                    "valueDate": "2025-10-08T14:21:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "552576.35"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "658.15",
+                    "narration": "UPI/DE/631101638339/McDonald's/XXXXXX",
+                    "valueDate": "2025-10-08T21:06:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "547825.55"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "4304.18",
+                    "narration": "UPI/DE/938012051386/Myntra/XXXXXX",
+                    "valueDate": "2025-10-09T17:14:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "543521.37"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "663.49",
+                    "narration": "UPI/DE/745267002855/Zomato/XXXXXX",
+                    "valueDate": "2025-10-11T08:11:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "563123.52"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2301.34",
+                    "narration": "UPI/DE/189761667273/BigBasket/XXXXXX",
+                    "valueDate": "2025-10-11T17:09:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "553969.31"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2137.83",
+                    "narration": "UPI/DE/473325160967/BookMyShow/XXXXXX",
+                    "valueDate": "2025-10-12T08:11:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "535287.21"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "156.59",
+                    "narration": "UPI/DE/441881158100/CafeCoffe/XXXXXX",
+                    "valueDate": "2025-10-12T09:36:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "548483.7"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "322.49",
+                    "narration": "UPI/DE/912293242733/Zomato/XXXXXX",
+                    "valueDate": "2025-10-14T16:07:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "562801.03"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "870.76",
+                    "narration": "UPI/DE/166814103555/AirtelBroadband/XXXXXX",
+                    "valueDate": "2025-10-14T16:35:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "549477.3"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "278.07",
+                    "narration": "UPI/DE/424401271462/RapidoRide/XXXXXX",
+                    "valueDate": "2025-10-15T16:38:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "553246.74"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1397.19",
+                    "narration": "UPI/DE/271599373228/JioRecharge/XXXXXX",
+                    "valueDate": "2025-10-15T22:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "550668.9"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1936.2",
+                    "narration": "UPI/DE/920732849790/Apollo_Pharmacy/XXXXXX",
+                    "valueDate": "2025-10-17T11:24:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "530728.41"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "439.83",
+                    "narration": "UPI/DE/498478548963/Zepto/XXXXXX",
+                    "valueDate": "2025-10-17T17:06:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "562361.2"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "444.5",
+                    "narration": "UPI/DE/798466125177/DMart/XXXXXX",
+                    "valueDate": "2025-10-19T16:45:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "553524.81"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2299.25",
+                    "narration": "UPI/DE/603806666041/Spencer's/XXXXXX",
+                    "valueDate": "2025-10-21T08:03:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "558767.54"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "303.7",
+                    "narration": "UPI/DE/820922255341/Uber/XXXXXX",
+                    "valueDate": "2025-10-21T22:49:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "552943.04"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "4132.5",
+                    "narration": "UPI/DE/945999235805/Nykaa/XXXXXX",
+                    "valueDate": "2025-10-27T17:39:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "539388.87"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "837.01",
+                    "narration": "UPI/DE/567078914303/BiryaniBlues/XXXXXX",
+                    "valueDate": "2025-10-28T22:46:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "548640.29"
+                  },
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/112025",
+                    "valueDate": "2025-11-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "630728.41"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/600019373152/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-11-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "605728.41"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "315.15",
+                    "narration": "UPI/DE/140595660945/AmazonPrime/XXXXXX",
+                    "valueDate": "2025-11-02T13:53:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "540326.4"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1215.0",
+                    "narration": "UPI/DE/915149650491/Paytm_Wallet/XXXXXX",
+                    "valueDate": "2025-11-02T15:58:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "538178.88"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "206.52",
+                    "narration": "UPI/DE/677245536519/RapidoRide/XXXXXX",
+                    "valueDate": "2025-11-03T14:55:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "553810.4"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/273262828950/Netflix/XXXXXX",
+                    "valueDate": "2025-11-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "605079.41"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1542.45",
+                    "narration": "UPI/DE/956129010748/AirtelBroadband/XXXXXX",
+                    "valueDate": "2025-11-07T09:32:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "552267.95"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1924.8",
+                    "narration": "UPI/DE/212683916677/AirtelBroadband/XXXXXX",
+                    "valueDate": "2025-11-07T12:12:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "549003.35"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "544.6",
+                    "narration": "UPI/DE/398131649043/Zomato/XXXXXX",
+                    "valueDate": "2025-11-07T20:32:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "602870.0"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "686.53",
+                    "narration": "UPI/DE/875381537047/Zepto/XXXXXX",
+                    "valueDate": "2025-11-08T16:35:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "556699.72"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1339.8",
+                    "narration": "UPI/DE/312643624935/WaterBoard/XXXXXX",
+                    "valueDate": "2025-11-10T13:46:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "550928.15"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "290.3",
+                    "narration": "UPI/DE/225797509938/PetrolBunk/XXXXXX",
+                    "valueDate": "2025-11-13T08:20:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "554186.29"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1459.26",
+                    "narration": "UPI/DE/340713234664/DMart/XXXXXX",
+                    "valueDate": "2025-11-13T17:03:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "558565.3"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "169.37",
+                    "narration": "UPI/DE/196043425993/RapidoRide/XXXXXX",
+                    "valueDate": "2025-11-14T21:06:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "554016.92"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "4389.11",
+                    "narration": "UPI/DE/264566563474/FirstCry/XXXXXX",
+                    "valueDate": "2025-11-15T09:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "543131.49"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "762.64",
+                    "narration": "UPI/DE/790514124625/Swiggy/XXXXXX",
+                    "valueDate": "2025-11-16T15:48:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "548240.71"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "862.14",
+                    "narration": "UPI/DE/104810296150/DMart/XXXXXX",
+                    "valueDate": "2025-11-16T19:27:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "557386.25"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2489.94",
+                    "narration": "UPI/DE/404067920664/Myntra/XXXXXX",
+                    "valueDate": "2025-11-19T08:22:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "540641.55"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "89.75",
+                    "narration": "UPI/DE/447300118003/Uber/XXXXXX",
+                    "valueDate": "2025-11-19T14:36:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "554476.59"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "352.56",
+                    "narration": "UPI/DE/951796738503/Zomato/XXXXXX",
+                    "valueDate": "2025-11-19T17:05:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "604726.85"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2448.47",
+                    "narration": "UPI/DE/452995800627/GooglePay_Transfer/XXXXXX",
+                    "valueDate": "2025-11-20T15:32:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "535730.41"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "932.52",
+                    "narration": "UPI/DE/202457704871/GooglePay_Transfer/XXXXXX",
+                    "valueDate": "2025-11-20T17:32:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "539393.88"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "42845.44",
+                    "narration": "UPI/DE/409713913259/TataCliQ_Luxury/XXXXXX",
+                    "valueDate": "2025-11-20T18:37:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "560024.56"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "720.11",
+                    "narration": "UPI/DE/722263658623/FreshMenu/XXXXXX",
+                    "valueDate": "2025-11-21T18:39:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "547520.6"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "588.08",
+                    "narration": "UPI/DE/586499977257/Zomato/XXXXXX",
+                    "valueDate": "2025-11-22T14:31:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "603414.6"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "316.91",
+                    "narration": "UPI/DE/335988370017/DMart/XXXXXX",
+                    "valueDate": "2025-11-25T10:48:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "558248.39"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "724.17",
+                    "narration": "UPI/DE/272466902454/Zomato/XXXXXX",
+                    "valueDate": "2025-11-25T17:03:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "604002.68"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2133.38",
+                    "narration": "UPI/DE/534101258787/DMart/XXXXXX",
+                    "valueDate": "2025-11-28T19:02:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "554566.34"
+                  },
+                  {
+                    "type": "CREDIT",
+                    "amount": "100000",
+                    "narration": "NEFT/SALARY/ACMECORP/SAVINGS/122025",
+                    "valueDate": "2025-12-01T09:00:00+05:30",
+                    "mode": "NEFT",
+                    "currentBalance": "635730.41"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "128.6",
+                    "narration": "UPI/DE/497320932658/PetrolBunk/XXXXXX",
+                    "valueDate": "2025-12-01T13:19:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "601367.85"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "25000",
+                    "narration": "UPI/DE/594186984574/RentOwner_Sharma/XXXXXX",
+                    "valueDate": "2025-12-02T10:00:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "610730.41"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1708.17",
+                    "narration": "UPI/DE/409773132256/1mg/XXXXXX",
+                    "valueDate": "2025-12-03T20:10:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "589895.65"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "160.57",
+                    "narration": "UPI/DE/966915218789/IRCTC/XXXXXX",
+                    "valueDate": "2025-12-04T16:49:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "601033.54"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "649",
+                    "narration": "UPI/DE/989502767451/Netflix/XXXXXX",
+                    "valueDate": "2025-12-05T11:30:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "610081.41"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "401.38",
+                    "narration": "UPI/DE/269121724065/RapidoRide/XXXXXX",
+                    "valueDate": "2025-12-06T10:53:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "600271.48"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "173.74",
+                    "narration": "UPI/DE/635866560574/Ola/XXXXXX",
+                    "valueDate": "2025-12-07T11:08:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "601194.11"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "891.09",
+                    "narration": "UPI/DE/200663178163/ATM_Withdrawal/XXXXXX",
+                    "valueDate": "2025-12-08T21:28:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "589004.56"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1892.21",
+                    "narration": "UPI/DE/266959464855/Spencer's/XXXXXX",
+                    "valueDate": "2025-12-11T09:37:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "605888.14"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "360.68",
+                    "narration": "UPI/DE/826011597249/RapidoRide/XXXXXX",
+                    "valueDate": "2025-12-11T22:49:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "600672.86"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1945.26",
+                    "narration": "UPI/DE/925857476973/WaterBoard/XXXXXX",
+                    "valueDate": "2025-12-12T11:34:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "596828.09"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "445.01",
+                    "narration": "UPI/DE/845425775966/BigBasket/XXXXXX",
+                    "valueDate": "2025-12-13T12:16:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "607780.35"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "386.53",
+                    "narration": "UPI/DE/413180153817/Zomato/XXXXXX",
+                    "valueDate": "2025-12-13T14:49:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "608595.3"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "2665.43",
+                    "narration": "UPI/DE/157616543512/Apollo_Pharmacy/XXXXXX",
+                    "valueDate": "2025-12-13T16:23:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "586339.13"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1609.09",
+                    "narration": "UPI/DE/715509967407/BigBasket/XXXXXX",
+                    "valueDate": "2025-12-13T18:50:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "602519.1"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1498.13",
+                    "narration": "UPI/DE/501196582838/BESCOM_Electricity/XXXXXX",
+                    "valueDate": "2025-12-15T19:15:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "598773.35"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "607.85",
+                    "narration": "UPI/DE/519953844996/CafeCoffe/XXXXXX",
+                    "valueDate": "2025-12-17T16:26:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "595779.83"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "311.03",
+                    "narration": "UPI/DE/677412919889/Zomato/XXXXXX",
+                    "valueDate": "2025-12-17T17:10:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "608981.83"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "788.55",
+                    "narration": "UPI/DE/654412972034/Zomato/XXXXXX",
+                    "valueDate": "2025-12-21T10:02:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "609292.86"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "4176.01",
+                    "narration": "UPI/DE/156908330480/Nykaa/XXXXXX",
+                    "valueDate": "2025-12-21T15:55:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "591603.82"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1759.95",
+                    "narration": "UPI/DE/867321912243/DMart/XXXXXX",
+                    "valueDate": "2025-12-22T14:08:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "604128.19"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "440.41",
+                    "narration": "UPI/DE/504560218966/FreshMenu/XXXXXX",
+                    "valueDate": "2025-12-22T17:28:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "596387.68"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "369.94",
+                    "narration": "UPI/DE/158402475099/Zomato/XXXXXX",
+                    "valueDate": "2025-12-26T18:41:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "608225.36"
+                  },
+                  {
+                    "type": "DEBIT",
+                    "amount": "1022.65",
+                    "narration": "UPI/DE/871677274007/Blinkit/XXXXXX",
+                    "valueDate": "2025-12-27T19:43:00+05:30",
+                    "mode": "UPI",
+                    "currentBalance": "601496.45"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
