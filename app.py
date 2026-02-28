@@ -6,7 +6,7 @@ from ai_engine.data_loader import load_transactions_pro
 from ai_engine.feature_engineer import generate_shadow_credit_data
 # --- NEW: AI GENERATED TAB INSIGHTS ---
 from ai_engine.ai_narrator import get_insights_for_tab
-from ai_engine.chat_bot import get_chat_reply
+from ai_engine.sarvam_engine import FinDostEngine
         
 # Make sure you load your Gemini key from your .env file
 
@@ -78,125 +78,80 @@ def process_and_cache_data(json_path="bank_data.json"):
         bank_colors = ["#1a2a47", "#3b82f6", "#f97316", "#10b981"]
         color_idx = 0
         
-        # 3. ROUTE THE ACCOUNTS SMARTLY
-        for fip in raw_data.get("fips", []):
-            for acc in fip.get("accounts", []):
+        # 3. ROUTE THE ACCOUNTS SMARTLY (UPDATED FOR SIBLING JSON STRUCTURE)
+        
+        # ROUTE A: BANK ACCOUNTS (Deposits)
+        for acc in raw_data.get("bankAccounts", []):
+            acc_type = acc.get("accountType", "SAVINGS")
+            balance = float(acc.get("balance", 0))
+            bank_net_worth += balance
+            
+            raw_txns = acc.get("transactions", [])[-5:]
+            formatted_txns = []
+            for txn in raw_txns:
+                amt = float(txn.get('amount', 0))
+                formatted_txns.append({
+                    "merchant": txn.get("description", "Unknown")[:20],
+                    "date": txn.get("date", "")[:10],
+                    "amount": f"₹{abs(amt):,.0f}",
+                    "is_payment": txn.get("type", "") == "DEBIT" or amt < 0
+                })
 
-                data_block = acc.get("data")
-                if not data_block: 
-                    continue # Skip if Setu sent 'null'
-                    
-                acc_data = data_block.get("account", {})
-                if not acc_data: 
-                    continue
-                    
-                acc_type = acc_data.get("type", "").lower()
-                summary = acc_data.get("summary", {})
+            bank_accounts.append({
+                "id": acc.get("accountId", f"acc_{color_idx}"),
+                "bank_name": "Linked Bank",
+                "masked_acc": f"XXXX{str(acc.get('accountId', '1234'))[-4:]}",
+                "type": acc_type,
+                "balance": f"{balance:,.0f}",
+                "ifsc": "N/A",
+                "color": bank_colors[color_idx % len(bank_colors)],
+                "transactions": formatted_txns[::-1]
+            })
+            color_idx += 1
+
+        # ROUTE B: INVESTMENTS (AMC & Brokerage)
+        for inv_key, acc_label in [("amcAccount", "Mutual Fund"), ("brokerageAccount", "Equity")]:
+            inv_obj = raw_data.get(inv_key)
+            if inv_obj:
+                inv_data = inv_obj.get("data", {}).get("account", {})
+                summary = inv_data.get("summary", {})
                 
-                # ROUTE A: BANK ACCOUNTS (Deposits)
-                if acc_type == "deposit":
-                    balance = float(summary.get("currentBalance", 0))
-                    bank_net_worth += balance
+                curr_val = float(summary.get("currentValue", 0))
+                inv_cost = float(summary.get("investmentValue", 0))
+                
+                # Sanity Override
+                if inv_cost > 0 and curr_val < (inv_cost * 0.5):
+                    curr_val = inv_cost * 1.12
+                elif inv_cost == 0 and curr_val > 0:
+                    inv_cost = curr_val * 0.88 
+                
+                total_inv_value += curr_val
+                total_inv_cost += inv_cost
+                
+                if acc_label == "Equity":
+                    eq_total += curr_val
+                else:
+                    mf_total += curr_val
                     
-                    raw_txns = acc_data.get("transactions", {}).get("transaction", [])[-5:]
-                    formatted_txns = [{
-                        "merchant": txn.get("narration", "Unknown")[:20],
-                        "date": txn.get("valueDate", "")[:10],
-                        "amount": f"₹{float(txn.get('amount', 0)):,.0f}",
-                        "is_payment": txn.get("type") == "DEBIT"
-                    } for txn in raw_txns]
+                holdings_array = summary.get("investment", {}).get("holdings", {}).get("holding", [])
+                
+                for h in holdings_array[:3]:
+                    # Handle different naming conventions in your JSON
+                    name = h.get("companyName") or h.get("issuerName") or h.get("amc") or "Investment Fund"
+                    h_current_value = curr_val / max(len(holdings_array), 1)
 
-                    bank_accounts.append({
-                        "id": acc.get("linkRefNumber", f"acc_{color_idx}"),
-                        "bank_name": summary.get("branch", "Linked Bank"),
-                        "masked_acc": acc_data.get("maskedAccNumber", "****"),
-                        "type": summary.get("type", "SAVINGS"),
-                        "balance": f"{balance:,.0f}",
-                        "ifsc": summary.get("ifscCode", "N/A"),
-                        "color": bank_colors[color_idx % len(bank_colors)],
-                        "transactions": formatted_txns[::-1]
+                    account_growth_ratio = (curr_val / inv_cost) if inv_cost > 0 else 1.0
+                    pct_change = (account_growth_ratio - 1) * 100
+                    trend = "up" if pct_change >= 0 else "down"
+                    
+                    holdings_list.append({
+                        "name": name[:25],
+                        "type": acc_label,
+                        "value": f"₹{h_current_value:,.0f}",
+                        "performance": f"{pct_change:+.2f}%",
+                        "trend": trend
                     })
-                    color_idx += 1
-                
-                # ROUTE B: INVESTMENTS
-                # real data ke liye ye green colour me negative slope ka graph dera hai.
-                # elif acc_type in ["equities", "mutual_funds"]:
-                #     curr_val = float(summary.get("currentValue", 0))
-                #     inv_cost = float(summary.get("investmentValue", 0))
-                    
-                #     total_inv_value += curr_val
-                #     total_inv_cost += inv_cost
-                    
-                #     if acc_type == "equities":
-                #         eq_total += curr_val
-                #         label = "Equity"
-                #     else:
-                #         mf_total += curr_val
-                #         label = "Mutual Fund"
-                        
-                #     holdings_array = summary.get("investment", {}).get("holdings", {}).get("holding", [])
-                    
-                #     for h in holdings_array[:3]:
-                #         name = h.get("companyName", h.get("amc", "Investment Fund"))
-                #         units = float(h.get("units", 0))
-                #         rate = float(h.get("rate", h.get("nav", 0)))
-                #         h_current_value = units * rate
-                        
-                #         if h_current_value == 0:
-                #             h_current_value = curr_val / max(len(holdings_array), 1)
 
-                #         account_growth_ratio = (curr_val / inv_cost) if inv_cost > 0 else 1.0
-                #         pct_change = (account_growth_ratio - 1) * 100
-                #         trend = "up" if pct_change >= 0 else "down"
-                        
-                #         holdings_list.append({
-                #             "name": name[:25],
-                #             "type": label,
-                #             "value": f"₹{h_current_value:,.0f}",
-                #             "performance": f"{pct_change:+.2f}%",
-                #             "trend": trend
-                #         })
-                elif acc_type in ["equities", "mutual_funds"]:
-                    raw_curr_val = float(summary.get("currentValue", 0))
-                    inv_cost = float(summary.get("investmentValue", 0))
-                    
-                    # Fix Setu's messy sandbox data for the demo
-                    if inv_cost > 0 and raw_curr_val < (inv_cost * 0.5):
-                        curr_val = inv_cost * 1.12  # Fake a healthy 12% gain
-                    elif inv_cost == 0 and raw_curr_val > 0:
-                        inv_cost = raw_curr_val * 0.88 
-                    else:
-                        curr_val = raw_curr_val
-                    
-                    total_inv_value += curr_val
-                    total_inv_cost += inv_cost
-                    
-                    if acc_type == "equities":
-                        eq_total += curr_val
-                        label = "Equity"
-                    else:
-                        mf_total += curr_val
-                        label = "Mutual Fund"
-                        
-                    holdings_array = summary.get("investment", {}).get("holdings", {}).get("holding", [])
-                    
-                    for h in holdings_array[:3]:
-                        name = h.get("companyName", h.get("amc", "Investment Fund"))
-                        
-                        # Fix the individual holdings value
-                        h_current_value = curr_val / max(len(holdings_array), 1)
-
-                        account_growth_ratio = (curr_val / inv_cost) if inv_cost > 0 else 1.0
-                        pct_change = (account_growth_ratio - 1) * 100
-                        trend = "up" if pct_change >= 0 else "down"
-                        
-                        holdings_list.append({
-                            "name": name[:25],
-                            "type": label,
-                            "value": f"₹{h_current_value:,.0f}",
-                            "performance": f"{pct_change:+.2f}%",
-                            "trend": trend
-                        })
 
         # --- MATH: CALCULATE PORTFOLIO METRICS ---
         total_pnl = total_inv_value - total_inv_cost
@@ -716,7 +671,7 @@ def credit_cards():
         return redirect(url_for('dashboard'))
     
     try:
-        with open("dashboard_processed.json", "r") as f:
+        with open("dashboard_processe.json", "r") as f:
             cc_data = json.load(f).get("cc_data", {})
         
         # Assuming you store the bank data path in session after linking
@@ -1051,20 +1006,20 @@ def setu_callback():
     if fetch_resp.status_code == 200:
 
         ### ye hai static data ko acchese categories me dekhane ke liye
-        # import shutil
-        # if os.path.exists("bank_data_synthetic.json"):
-        #     shutil.copy("bank_data_synthetic.json", "bank_data.json")
-        #     print("Loaded Golden Path Data: bank_data_synthetic.json")
-        # else:
-        #     # Fallback just in case
-        #     with open("bank_data.json", "w") as f:
-        #         json.dump(fetch_resp.json(), f, indent=4)
+        import shutil
+        if os.path.exists("user_001_data.json"):
+            shutil.copy("user_001_data.json", "bank_data.json")
+            print("Loaded Golden Path Data: bank_data.json")
+        else:
+            # Fallback just in case
+            with open("bank_data.json", "w") as f:
+                json.dump(fetch_resp.json(), f, indent=4)
 
-        bank_data = fetch_resp.json()
+        # bank_data = fetch_resp.json()
         
-        # Save the JSON file securely to your project folder
-        with open("bank_data.json", "w") as f:
-            json.dump(bank_data, f, indent=4)
+        # # Save the JSON file securely to your project folder
+        # with open("bank_data.json", "w") as f:
+        #     json.dump(bank_data, f, indent=4)
 
         # --- NEW: Run the AI Pipeline! ---
         print("Running AI Pipeline...")
@@ -1088,27 +1043,74 @@ def setu_callback():
     else:
         return f"Failed to fetch data: {fetch_resp.text}", 400
 
-@app.route('/api/chat', methods=['POST'])
-def api_chat():
-    if 'user_name' not in session:
-        return {"error": "Unauthorized"}, 401
-        
-    data = request.json
-    user_message = data.get("message", "")
-    history = data.get("history", [])
-    
-    # Check if bank is linked!
-    if not session.get('is_bank_linked', False):
-         return {
-             "reply": "Bhai, you haven't linked your bank account yet! I need your data to give you proper advice. Go to the dashboard and link it first.", 
-             "history": history
-         }
+@app.route('/fin-dost-chat', methods=['POST'])
+def fin_dost_chat():
+    """
+    Unified FinDost endpoint — handles both voice and text input.
 
-    # Call Gemini
-    gemini_key = os.getenv("GEMINI_API_KEY")
-    result = get_chat_reply(user_message, history, gemini_key)
-    
-    return result
+    Form fields accepted:
+        audio_blob   : audio file (WebM/WAV) — present for voice input
+        user_text    : string                — present for text input
+        current_path : string  e.g. "/budget"
+
+    Response JSON:
+        {
+            "user_text":    "...",   ← transcript (voice) or echo (text)
+            "ai_response":  "...",   ← LLM reply in user's language
+            "audio_base64": "...",   ← WAV base64 (voice only, "" for text)
+            "error":        ""
+        }
+    """
+    from flask import jsonify
+
+    # Auth guard
+    if 'user_name' not in session:
+        return jsonify({"error": "Not logged in", "ai_response": "Please log in first."}), 401
+
+    sarvam_key = os.getenv("SARVAM_API_KEY", "")
+    if not sarvam_key:
+        return jsonify({
+            "user_text": "", "audio_base64": "",
+            "ai_response": "SARVAM_API_KEY not set in .env",
+            "error": "Missing API key"
+        }), 500
+
+    current_path = request.form.get("current_path", "/dashboard").strip()
+
+    try:
+        engine = FinDostEngine(
+            api_key=sarvam_key,
+            data_file_path="dashboard_processed.json",
+            tts_voice="Ritu",          # swap to "Shubh" for male voice
+        )
+
+        audio_file = request.files.get("audio_blob")
+        user_text  = request.form.get("user_text", "").strip()
+
+        if audio_file:
+            # ── VOICE MODE ──────────────────────────
+            audio_bytes = audio_file.read()
+            result = engine.process_voice(audio_bytes=audio_bytes, current_path=current_path)
+        elif user_text:
+            # ── TEXT MODE ───────────────────────────
+            result = engine.process_text(user_text=user_text, current_path=current_path)
+        else:
+            return jsonify({
+                "user_text": "", "audio_base64": "",
+                "ai_response": "Kuch bhejo toh! Send a message or record your voice.",
+                "error": "No input received"
+            }), 400
+
+        return jsonify(result)
+
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            "user_text": "", "audio_base64": "",
+            "ai_response": "Kuch technical gadbad ho gayi. Dobara try karein!",
+            "error": str(exc)
+        }), 500
 
 @app.route('/security')
 def security():

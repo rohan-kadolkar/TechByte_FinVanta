@@ -1,157 +1,83 @@
 import json
-import re
 import os
 import pandas as pd
 
-# ─────────────────────────────────────────────────────────────
-# HELPER 1 — Merchant Name Cleaner
-# Turns raw narration merchants like 'ZOMATO_123_BLR' → 'Zomato'
-# ─────────────────────────────────────────────────────────────
 def _clean_merchant(raw: str) -> str:
-    """
-    Cleans a raw merchant/narration string into a human-readable name.
-
-    Steps:
-      1. Extract the merchant segment from AA narration format (UPI/DE/.../Merchant/XXXX)
-      2. Strip trailing digits, underscores, city codes (3-letter all-caps), special chars
-      3. Title-case the result
-
-    Examples:
-      'ZOMATO_123_BLR'       → 'Zomato'
-      'SWIGGY_INSTAMART_MUM' → 'Swiggy Instamart'
-      'NETFLIX.COM_9878'     → 'Netflix Com'
-      'RentOwner_Sharma'     → 'Rentowner Sharma'
-      'UPI/DE/123/Zomato/XX' → 'Zomato'
-    """
+    # Keep your existing logic here if you want, but your new JSON
+    # already has clean names like "Zomato" and "Netflix"!
     if not raw or not isinstance(raw, str):
         return "Unknown"
-
-    name = raw.strip()
-
-    # Extract merchant segment from AA narration format: UPI/DE/<ref>/<Merchant>/XXXX
-    parts = name.split("/")
-    if len(parts) >= 4:
-        name = parts[3].strip()
-
-    # Remove trailing reference numbers / transaction IDs (pure digit blocks)
-    name = re.sub(r'\b\d+\b', '', name)
-
-    # Remove trailing 3-letter all-caps city/branch codes (e.g. BLR, MUM, DEL, HYD)
-    name = re.sub(r'\b[A-Z]{2,4}\b', lambda m: '' if m.group() == m.group().upper() else m.group(), name)
-
-    # Replace underscores, dots, hyphens with spaces
-    name = re.sub(r'[_.\-]+', ' ', name)
-
-    # Remove leftover special characters
-    name = re.sub(r'[^a-zA-Z0-9\s]', '', name)
-
-    # Collapse multiple spaces
-    name = re.sub(r'\s+', ' ', name).strip()
-
-    # Title-case
-    name = name.title() if name else "Unknown"
-
-    return name if name else "Unknown"
-
+    return str(raw).strip()
 
 # ─────────────────────────────────────────────────────────────
-# HELPER 2 — Account Type Resolver
-# ─────────────────────────────────────────────────────────────
-def _resolve_acc_type(json_path: str, acc_info: dict) -> str:
-    """
-    Determines account type from:
-      1. The 'type' or 'accType' field in the account data block
-      2. The source file name (e.g. 'credit_card_data.json' → 'Credit Card')
-      3. Falls back to 'Savings'
-    """
-    # Check account summary type field
-    summary = acc_info.get("summary", {})
-    acc_type_raw = (
-        summary.get("type")
-        or acc_info.get("accType")
-        or acc_info.get("type")
-        or "" #isko zara dekhna hai ki kahi transaction type na lele
-    ).upper()
-
-    if acc_type_raw in ("CREDIT", "CREDIT_CARD", "CC"):
-        return "Credit Card"
-    if acc_type_raw in ("SAVINGS", "SAVING", "SB"):
-        return "Savings"
-    if acc_type_raw in ("CURRENT", "CA"):
-        return "Current"
-
-    # Fallback: infer from file name
-    fname = os.path.basename(json_path).lower()
-    if any(k in fname for k in ("credit", "cc", "card")):
-        return "Credit Card"
-    if "current" in fname:
-        return "Current"
-
-    return "Savings"  # safe default
-
-
-# ─────────────────────────────────────────────────────────────
-# MAIN LOADER
+# MAIN LOADER (UPDATED FOR SIBLING JSON STRUCTURE)
 # ─────────────────────────────────────────────────────────────
 def load_transactions_pro(json_path):
     with open(json_path, "r") as f:
         raw = json.load(f)
 
     transactions_list = []
-    txn_id_counter = 1001  # Auto-incrementing ID seed
+    
+    # --- HELPER TO EXTRACT TRANSACTIONS ---
+    def parse_and_append(txns, acc_type_label, default_acc_no="Unknown", balance=0):
+        for txn in txns:
+            txn_id = txn.get("txnId") or txn.get("id") or "UNKNOWN"
+            
+            # Handle negative amounts
+            raw_amount = float(txn.get("amount", 0))
+            abs_amount = abs(raw_amount)
+            
+            # Determine Credit/Debit (Treat BUY as Debit, SELL as Credit for investments)
+            t_type = str(txn.get("type", "")).upper()
+            if t_type in ["BUY", "DEBIT"] or raw_amount < 0:
+                txn_type = "DEBIT"
+            else:
+                txn_type = "CREDIT"
 
-    for fip in raw.get("fips", []):
-        for acc in fip.get("accounts", []):
-            # ✅ SAFETY GUARD: Check if 'data' exists before digging deeper
-            data_block = acc.get("data")
-            if not data_block:
-                continue  # Skip this account if it's empty/null
+            # Check for descriptions or narrations
+            narration = txn.get("description") or txn.get("narration") or "Unknown"
+            clean_merch = _clean_merchant(narration)
+            
+            # Check for different date keys
+            date_str = txn.get("date") or txn.get("transactionDateTime")
 
-            # Now safe to get account info
-            acc_info = data_block.get("account", {})     
-            acc_no   = acc_info.get("maskedAccNumber") 
+            transactions_list.append({
+                "account":        default_acc_no,
+                "date":           pd.to_datetime(date_str, errors="coerce"),
+                "amount":         abs_amount, 
+                "type":           txn_type,
+                "narration":      narration,
+                "mode":           txn.get("category") or txn.get("mode") or "OTHER",
+                "balance":        float(balance),
+                "txnId":          txn_id,
+                "clean_merchant": clean_merch,
+                "acc_type":       acc_type_label,
+            })
 
-            # ── NEW: resolve account type once per account ──
-            acc_type = _resolve_acc_type(json_path, acc_info)
+    # 1. PARSE BANK ACCOUNTS
+    for acc in raw.get("bankAccounts", []):
+        acc_type = "Savings" if acc.get("accountType") == "SAVINGS" else "Current"
+        parse_and_append(acc.get("transactions", []), acc_type, acc.get("accountId"), acc.get("balance", 0))
 
-            # ✅ SAFETY GUARD: Check if 'transactions' block exists 
-            txn_block = acc_info.get("transactions") 
-            if not txn_block:
-                continue
+    # 2. PARSE AMC ACCOUNT
+    amc = raw.get("amcAccount")
+    if amc:
+        amc_data = amc.get("data", {}).get("account", {})
+        amc_txns = amc_data.get("transactions", {}).get("transaction", [])
+        parse_and_append(amc_txns, "Investment", amc_data.get("maskedAccNumber"))
 
-            transactions = txn_block.get("transaction") or []
-
-            for txn in transactions:
-                narration = txn.get("narration")
-
-                # ── NEW: txnId — use source value or generate one ──
-                txn_id = txn.get("txnId") or txn.get("id") or str(txn_id_counter)
-                txn_id_counter += 1
-
-                # ── NEW: clean_merchant derived from narration ──
-                clean_merch = _clean_merchant(narration or "")
-
-                transactions_list.append({
-                    "account":        acc_no,
-                    # ✅ FIX 1 → Prevent crash if date missing / invalid
-                    "date":           pd.to_datetime(txn.get("valueDate"), errors="coerce"),
-                    "amount":         float(txn.get("amount", 0)),
-                    "type":           txn.get("type"),
-                    "narration":      narration,
-                    "mode":           txn.get("mode"),
-                    "balance":        float(txn.get("currentBalance", 0)),
-                    # ── NEW COLUMNS ──────────────────────────────
-                    "txnId":          txn_id,
-                    "clean_merchant": clean_merch,
-                    "acc_type":       acc_type,
-                })
+    # 3. PARSE BROKERAGE ACCOUNT
+    brok = raw.get("brokerageAccount")
+    if brok:
+        brok_data = brok.get("data", {}).get("account", {})
+        brok_txns = brok_data.get("transactions", {}).get("transaction", [])
+        parse_and_append(brok_txns, "Investment", brok_data.get("maskedAccNumber"))
 
     if not transactions_list:
         return pd.DataFrame()
 
     df = pd.DataFrame(transactions_list)
-
-    # ✅ FIX 2 → Remove rows where AA sent bad timestamps
     df = df.dropna(subset=["date"])
-
+    df["date"] = pd.to_datetime(df["date"], utc=True).dt.tz_localize(None)
+    
     return df.sort_values(by="date")
