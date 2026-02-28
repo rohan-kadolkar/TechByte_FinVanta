@@ -674,44 +674,6 @@ def credit_cards():
         with open("dashboard_processe.json", "r") as f:
             cc_data = json.load(f).get("cc_data", {})
         
-        # Assuming you store the bank data path in session after linking
-        # json_path = session.get('bank_json_path', 'bank_data.json') 
-        # result = run_pipeline(json_path)
-        # shadow = result.shadow_cc  # This is the dict from feature_engineer.py
-        
-        # if shadow and shadow.get("detected"):
-        #     # 2. Map Shadow Data to your Template Format
-        #     cc_data = {
-        #         "total_debt": f"{shadow['inferred_balance']:,.2f}",
-        #         "debt_trend": "Inferred from Bank Decodes",
-        #         "credit_score": 710, # Static or calculated
-        #         "score_status": "Fair (Inferred)",
-        #         "ai_insights": [
-        #             {"icon": "fa-eye", "color": "blue", "text": f"Detected {shadow['detected_rows']} CC payments in your bank statement."},
-        #             {"icon": "fa-chart-pie", "color": "orange", "text": f"Estimated utilization: {shadow['utilisation_pct']}% based on inferred limit."}
-        #         ],
-        #         "cards": [{
-        #             "id": "shadow_1",
-        #             "name": "Detected Credit Card",
-        #             "network": "Inferred",
-        #             "last4": "XXXX",
-        #             "balance": f"{shadow['inferred_balance']:,.2f}",
-        #             "due_date": "Derived from patterns",
-        #             "limit": f"{shadow['estimated_limit']:,.0f}",
-        #             "apr": "Market Avg (18-24%)",
-        #             "color": "#2c3e50",
-        #             "transactions": [
-        #                 {
-        #                     "merchant": t['label'], 
-        #                     "date": "Estimated", 
-        #                     "amount": f"-₹{t['amount']:,.2f}",
-        #                     "category": t['category']
-        #                 } for t in shadow['synthetic_transactions']
-        #             ]
-        #         }]
-        #     }
-        # else:
-        #     raise ValueError("No CC data detected")
     except (FileNotFoundError, json.JSONDecodeError):
         # --- STATIC CREDIT CARD DATA ---
         cc_data = {
@@ -811,7 +773,12 @@ def budget():
                 {"icon": "fa-triangle-exclamation", "color": "orange", "text": "Alert: You have exceeded your Food & Dining budget by $350."},
                 {"icon": "fa-scissors", "color": "red", "text": "Shopping expenses are '70%' higher than expected. Hold off on non-essentials."},
                 {"icon": "fa-check", "color": "green", "text": "Great job on Utilities! You are projected to come in $50 under budget."}
-            ]
+            ],
+            "golden_ratio": {
+                "needs": 50,
+                "wants": 30,
+                "savings": 20
+            },
         }
 
     return render_template('budget.html', user=session['user_name'], data=full_budget_data)

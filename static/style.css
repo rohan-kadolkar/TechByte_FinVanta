@@ -510,7 +510,7 @@ input[type="password"]:focus {
     transform: translateX(-50%);
     text-align: center;
 }
-.score-center-text h2 { font-size: 36px; color: #1a2a47; margin: 0; font-weight: 700; }
+.score-center-text h2 { font-size: 36px; color: #1a2a47; margin: 0; font-weight: 700;padding-bottom: 40px; }
 .score-center-text p { font-size: 14px; color: #6b7280; margin: 0; font-weight: 500; }
 
 /* Clickable Credit Card List */
