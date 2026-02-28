@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from dotenv import load_dotenv
 import sqlite3, os, requests, json, time
 # --- IMPORT AI ENGINE ---
-from ai_engine.pipeline import run_pipeline
 from ai_engine.data_loader import load_transactions_pro
 from ai_engine.feature_engineer import generate_shadow_credit_data
 # --- NEW: AI GENERATED TAB INSIGHTS ---
@@ -120,6 +119,7 @@ def process_and_cache_data(json_path="bank_data.json"):
                     color_idx += 1
                 
                 # ROUTE B: INVESTMENTS
+                # real data ke liye ye green colour me negative slope ka graph dera hai.
                 # elif acc_type in ["equities", "mutual_funds"]:
                 #     curr_val = float(summary.get("currentValue", 0))
                 #     inv_cost = float(summary.get("investmentValue", 0))
@@ -411,6 +411,8 @@ def process_and_cache_data(json_path="bank_data.json"):
                 
         cc_data_dict["ai_insights"] = get_insights_for_tab("cc", cc_data_dict, gemini_api_key)
 
+        anomaly_list = ai_result.anomalies.frontend_records[:4] if hasattr(ai_result.anomalies, 'frontend_records') else []
+
         # 6. SAVE ALL DATA (No ellipses!)
         master_data = {
             "dashboard_data": {
@@ -418,6 +420,7 @@ def process_and_cache_data(json_path="bank_data.json"):
                 "cash_flow": {"labels": cash_flow_labels, "income": cash_flow_income, "expenses": cash_flow_expenses},
                 "accounts": bank_accounts,
                 "ai_insights": dash_insights,
+                "recent_anomalies": anomaly_list,
                 "budget_overview": {"income_pct": inc_pct, "expenses_pct": exp_pct, "budget_pct": spent_budget_pct}
             },
             "finance_data": {
@@ -1046,6 +1049,17 @@ def setu_callback():
     fetch_resp = requests.get(url_fetch, headers=SETU_HEADERS)
     
     if fetch_resp.status_code == 200:
+
+        ### ye hai static data ko acchese categories me dekhane ke liye
+        # import shutil
+        # if os.path.exists("bank_data_synthetic.json"):
+        #     shutil.copy("bank_data_synthetic.json", "bank_data.json")
+        #     print("Loaded Golden Path Data: bank_data_synthetic.json")
+        # else:
+        #     # Fallback just in case
+        #     with open("bank_data.json", "w") as f:
+        #         json.dump(fetch_resp.json(), f, indent=4)
+
         bank_data = fetch_resp.json()
         
         # Save the JSON file securely to your project folder
@@ -1095,6 +1109,27 @@ def api_chat():
     result = get_chat_reply(user_message, history, gemini_key)
     
     return result
+
+@app.route('/security')
+def security():
+
+    if 'user_name' not in session:
+        return redirect(url_for('login'))
+    
+    if not session.get('is_bank_linked', False):
+        flash("Please link your bank account first to view Security Alerts.", "warning")
+        return redirect(url_for('dashboard'))
+    
+    anomaly_data = []
+    try:
+        with open("dashboard_processed.json", "r") as f:
+            full_data = json.load(f)
+            # Fetch the anomalies we saved earlier in dashboard_data
+            anomaly_data = full_data.get("dashboard_data", {}).get("recent_anomalies", [])
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+
+    return render_template('security.html', user=session['user_name'], anomalies=anomaly_data)
 
 if __name__ == '__main__':
     print("🚀 FLASK APP RUNNING ON http://127.0.0.1:5000")

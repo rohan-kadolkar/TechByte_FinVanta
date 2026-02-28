@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceFlow - Security</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+    <div class="sidebar">
+        <div class="logo-section">
+            <i class="fa-solid fa-shield-halved logo-icon"></i>
+            <h2 class="logo-text">FinanceFlow</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('dashboard') }}"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li><a href="{{ url_for('credit_cards') }}"><i class="fa-solid fa-credit-card"></i> Credit Cards</a></li>
+            <li><a href="{{ url_for('finance') }}"><i class="fa-solid fa-chart-line"></i> Finance</a></li>
+            <li><a href="{{ url_for('budget') }}"><i class="fa-solid fa-bullseye"></i> Budget</a></li>
+            <li class="active"><a href="{{ url_for('security') }}"><i class="fa-solid fa-shield-halved"></i> Security Alerts</a></li>
+        </ul>
+        <div class="logout-section" style="margin-top: auto;">
+            <a href="#" class="sidebar-link" onclick="openProfile()"><i class="fa-solid fa-gear"></i> Settings</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="dashboard-header">
+            <div class="header-title">
+                <h1>Security & Anomalies</h1>
+                <p style="color: #64748b; font-size: 14px; margin-top: 5px;">AI-powered monitoring of your transaction patterns.</p>
+            </div>
+            <div class="header-actions">
+                <div class="user-avatar" onclick="openProfile()" style="cursor: pointer;">{{ user[0] | upper }}</div>
+            </div>
+        </header>
+
+        <div style="max-width: 900px; margin-top: 20px;">
+            <div class="dash-card">
+                <div class="card-header" style="border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 15px;">
+                    <h3><i class="fa-solid fa-radar" style="color: #3b82f6;"></i> Recent AI Detections</h3>
+                </div>
+                
+                {% if anomalies|length > 0 %}
+                <div class="anomaly-list" style="gap: 15px;">
+                    {% for row in anomalies %}
+                    <div class="anomaly-item" style="padding: 16px; background: white; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                        <div class="anomaly-icon severity-{{ row.severity }}" style="width: 45px; height: 45px; font-size: 18px;">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div class="anomaly-details">
+                            <div class="anomaly-title" style="font-size: 16px;">
+                                <strong>{{ row.clean_merchant }}</strong>
+                                <span class="anomaly-amt">₹{{ row.amount | int }}</span>
+                            </div>
+                            <div class="anomaly-text" style="font-size: 13.5px; margin-top: 6px;">{{ row.insight_text }}</div>
+                            <div style="font-size: 11px; color: #94a3b8; margin-top: 8px;">
+                                <i class="fa-regular fa-calendar"></i> {{ row.date }} &nbsp;|&nbsp; 
+                                <i class="fa-solid fa-tag"></i> {{ row.category }} &nbsp;|&nbsp; 
+                                <i class="fa-solid fa-fingerprint"></i> ID: {{ row.txn_id[:8] }}...
+                            </div>
+                        </div>
+                        <div class="anomaly-badge {{ row.severity }}" style="font-size: 13px; padding: 6px 12px;">{{ row.severity | title }} Risk</div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div style="text-align: center; padding: 50px 20px; color: #64748b;">
+                    <i class="fa-solid fa-shield-check" style="font-size: 40px; color: #10b981; margin-bottom: 15px;"></i>
+                    <h3 style="color: #1e293b; margin-bottom: 5px;">No unusual activity detected</h3>
+                    <p>Your transaction patterns look normal. AI is continuously monitoring your accounts.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'profile_drawer.html' %}
+    {% include 'chat_widget.html' %}
+</body>
+</html>

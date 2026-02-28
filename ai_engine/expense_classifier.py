@@ -31,8 +31,9 @@ def classify_expenses(json_path):
     # ---------------------------------
     # 4. APPLY RULE ENGINE
     # ---------------------------------
-    results = df["narration"].apply(
-        lambda x: pd.Series(categorize_transaction(x))
+    results = df.apply(
+        lambda row: pd.Series(categorize_transaction(row["narration"], row["amount"])), 
+        axis=1
     )
 
     results.columns = ["predicted_category", "confidence", "merchant"]

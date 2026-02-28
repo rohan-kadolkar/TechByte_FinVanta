@@ -786,3 +786,74 @@ input[type="password"]:focus {
 .drawer-footer { padding: 20px 25px; background: #fff; border-top: 1px solid #e2e8f0; }
 .drawer-btn.logout-btn { background: #f1f5f9; color: #334155; }
 .drawer-btn.logout-btn:hover { background: #e2e8f0; color: #0f172a; }
+
+
+
+/* ANOMALY DETECTOR STYLES */
+.anomaly-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.anomaly-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid transparent;
+}
+
+/* Dynamic Left Borders based on severity */
+.anomaly-item:has(.severity-high) { border-left-color: #ef4444; }
+.anomaly-item:has(.severity-medium) { border-left-color: #f59e0b; }
+.anomaly-item:has(.severity-low) { border-left-color: #3b82f6; }
+
+.anomaly-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+.anomaly-icon.severity-high { background: #fee2e2; color: #ef4444; }
+.anomaly-icon.severity-medium { background: #fef3c7; color: #f59e0b; }
+.anomaly-icon.severity-low { background: #dbeafe; color: #3b82f6; }
+
+.anomaly-details {
+    flex-grow: 1;
+}
+
+.anomaly-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.anomaly-amt {
+    font-weight: 700;
+    font-family: monospace;
+}
+
+.anomaly-text {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+.anomaly-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+.anomaly-badge.high { background: #ef4444; color: white; }
+.anomaly-badge.medium { background: #f59e0b; color: white; }
+.anomaly-badge.low { background: #3b82f6; color: white; }

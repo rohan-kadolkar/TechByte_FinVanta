@@ -21,6 +21,7 @@
             <li class="active"><a href="{{ url_for('credit_cards') }}"><i class="fa-solid fa-credit-card"></i> Credit Cards</a></li>
             <li><a href="{{ url_for('finance') }}"><i class="fa-solid fa-chart-line"></i> Finance</a></li>
             <li><a href="{{ url_for('budget') }}"><i class="fa-solid fa-bullseye"></i> Budget</a></li>
+            <li><a href="{{ url_for('security') }}"><i class="fa-solid fa-shield-halved"></i> Security Alerts</a></li>
         </ul>
         <div class="logout-section" style="margin-top: auto;">
             <a href="#" class="sidebar-link" onclick="openProfile()"><i class="fa-solid fa-gear"></i> Settings</a>
@@ -42,7 +43,7 @@
             
             <div class="dash-card net-worth-card" style="grid-column: span 1;">
                 <h3>Total Credit Card Debt</h3>
-                <div class="nw-value" style="color: #ef4444;">${{ data.total_debt }} <span class="nw-trend" style="background: #fee2e2; color: #ef4444;"><i class="fa-solid fa-arrow-up"></i></span></div>
+                <div class="nw-value" style="color: #ef4444;">₹{{ data.total_debt }} <span class="nw-trend" style="background: #fee2e2; color: #ef4444;"><i class="fa-solid fa-arrow-up"></i></span></div>
                 <div style="position: relative; height: 100px; width: 100%;">
                     <canvas id="debtChart"></canvas>
                 </div>
